@@ -60,11 +60,11 @@ describe('logger', () => {
     logger.info('test');
 
     await new Promise<void>((resolve) => {
-      stream?.on('close', () => {
+      stream.on('close', () => {
         resolve();
       });
 
-      stream?.end();
+      stream.end();
     });
 
     expect(api).toBeCalledTimes(1);
@@ -115,11 +115,11 @@ describe('logger', () => {
     await new Promise((resolve) => setTimeout(resolve, 8000));
 
     await new Promise<void>((resolve) => {
-      stream?.on('close', () => {
+      stream.on('close', () => {
         resolve();
       });
 
-      stream?.end();
+      stream.end();
     });
 
     expect(api).toBeCalledTimes(1);
@@ -170,11 +170,11 @@ describe('logger', () => {
     await new Promise((resolve) => setTimeout(resolve, 5000));
 
     await new Promise<void>((resolve) => {
-      stream?.on('close', () => {
+      stream.on('close', () => {
         resolve();
       });
 
-      stream?.end();
+      stream.end();
     });
 
     expect(api).toBeCalledTimes(1);
@@ -228,11 +228,11 @@ describe('logger', () => {
     logger.info('test');
 
     await new Promise<void>((resolve) => {
-      stream?.on('close', () => {
+      stream.on('close', () => {
         resolve();
       });
 
-      stream?.end();
+      stream.end();
     });
 
     expect(api).toBeCalledTimes(10);
