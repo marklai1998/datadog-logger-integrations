@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/marklai1998/datadog-logger-integrations/compare/v1.3.0...v1.3.1) (2025-05-25)
+
+
+### Bug Fixes
+
+* make cosola as optional deps ([dcdcc54](https://github.com/marklai1998/datadog-logger-integrations/commit/dcdcc54b4aadf540e7b44bb840e35ad3e66c9ea1))
+
 ## [1.3.0](https://github.com/marklai1998/datadog-logger-integrations/compare/v1.2.0...v1.3.0) (2025-05-25)
 
 
