@@ -44,4 +44,5 @@ export const getDataDogStream = (config: LogStreamConfig) => {
   return parser;
 };
 
+// Default export for transport API
 export default getDataDogStream;

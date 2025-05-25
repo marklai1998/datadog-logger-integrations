@@ -46,9 +46,9 @@ pnpm i datadog-logger-integrations
 - [Integrations](#Integrations)
   - [Bunyan](#bunyan)
   - [Pino](#pino)
-    - [With Transport API](#with-transport-api)
     - [With Stream API](#with-stream-api)
   - [Winston](#winston)
+    - [Use the stream directly](#use-the-stream-directly)
 - [Types](#types)
   - [LogStreamConfig](#LogStreamConfig)
 - [Usage with Lambda](#usage-with-lambda)
@@ -87,8 +87,6 @@ logger.info('test');
 
 > [!NOTE]  
 > If you are using it [with lambda](#usage-with-lambda), you must use the Stream API
-
-##### With [Transport API](https://getpino.io/#/docs/api?id=pinotransportoptions-gt-threadstream)
 
 ```ts
 import { LogStreamConfig } from 'datadog-logger-integrations'
@@ -147,6 +145,36 @@ logger.info('test');
 ```
 
 #### [Winston](https://github.com/winstonjs/winston)
+
+> [!NOTE]  
+> If you are using it [with lambda](#usage-with-lambda), you must use the Stream directly
+
+```ts
+import { LogStreamConfig } from 'datadog-logger-integrations'
+import { DataDogTransport } from 'datadog-logger-integrations/winston'
+
+const opts: LogStreamConfig = {
+    ddClientConfig: {
+        authMethods: {
+            apiKeyAuth: apiKey,
+        },
+    },
+    ddTags: 'env:test',
+    ddSource: "my source",
+    service: "my service",
+}
+
+const logger = winston.createLogger({
+    level: 'debug',
+    transports: [
+        new DataDogTransport(opts),
+    ],
+});
+
+logger.info('test');
+```
+
+##### Use the stream directly
 
 ```ts
 import { LogStreamConfig } from 'datadog-logger-integrations'

@@ -43,5 +43,3 @@ export const getDataDogStream = (config: LogStreamConfig) => {
 
   return parser;
 };
-
-export default getDataDogStream;

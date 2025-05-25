@@ -1,13 +1,12 @@
 import { faker } from '@faker-js/faker';
 import { http } from 'msw';
 import { setupServer } from 'msw/node';
-import { pino } from 'pino';
 import { expect } from 'vitest';
 import winston from 'winston';
-import ddStream from '../index.js';
+import { getDataDogStream } from '../index.js';
 const server = setupServer();
 
-describe('logger', () => {
+describe('getDataDogStream', () => {
   beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
 
   afterAll(() => server.close());
@@ -30,7 +29,7 @@ describe('logger', () => {
 
     const apiKey = faker.string.uuid();
 
-    const stream = ddStream({
+    const stream = getDataDogStream({
       ddClientConfig: {
         authMethods: {
           apiKeyAuth: apiKey,
@@ -89,7 +88,7 @@ describe('logger', () => {
 
     const apiKey = faker.string.uuid();
 
-    const stream = ddStream({
+    const stream = getDataDogStream({
       ddClientConfig: {
         authMethods: {
           apiKeyAuth: apiKey,
@@ -145,7 +144,7 @@ describe('logger', () => {
 
     const apiKey = faker.string.uuid();
 
-    const stream = ddStream({
+    const stream = getDataDogStream({
       ddClientConfig: {
         authMethods: {
           apiKeyAuth: apiKey,
@@ -201,7 +200,7 @@ describe('logger', () => {
 
     const apiKey = faker.string.uuid();
 
-    const stream = ddStream({
+    const stream = getDataDogStream({
       ddClientConfig: {
         authMethods: {
           apiKeyAuth: apiKey,
@@ -211,15 +210,16 @@ describe('logger', () => {
       ddSource: faker.string.uuid(),
       service: faker.string.uuid(),
       debug: true,
-      sendIntervalMs: 0,
     });
 
-    const logger = pino(
-      {
-        level: 'debug',
-      },
-      pino.multistream([stream]),
-    );
+    const logger = winston.createLogger({
+      level: 'debug',
+      transports: [
+        new winston.transports.Stream({
+          stream,
+        }),
+      ],
+    });
 
     logger.info('test');
     logger.info('test');

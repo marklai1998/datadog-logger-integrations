@@ -3,7 +3,7 @@ import bunyan from 'bunyan';
 import { http } from 'msw';
 import { setupServer } from 'msw/node';
 import { expect } from 'vitest';
-import ddStream from '../index.js';
+import { getDataDogStream } from '../index.js';
 const server = setupServer();
 
 describe('logger', () => {
@@ -29,7 +29,7 @@ describe('logger', () => {
 
     const apiKey = faker.string.uuid();
 
-    const stream = ddStream({
+    const stream = getDataDogStream({
       ddClientConfig: {
         authMethods: {
           apiKeyAuth: apiKey,
@@ -85,7 +85,7 @@ describe('logger', () => {
 
     const apiKey = faker.string.uuid();
 
-    const stream = ddStream({
+    const stream = getDataDogStream({
       ddClientConfig: {
         authMethods: {
           apiKeyAuth: apiKey,
@@ -139,7 +139,7 @@ describe('logger', () => {
 
     const apiKey = faker.string.uuid();
 
-    const stream = ddStream({
+    const stream = getDataDogStream({
       ddClientConfig: {
         authMethods: {
           apiKeyAuth: apiKey,
@@ -193,7 +193,7 @@ describe('logger', () => {
 
     const apiKey = faker.string.uuid();
 
-    const stream = ddStream({
+    const stream = getDataDogStream({
       ddClientConfig: {
         authMethods: {
           apiKeyAuth: apiKey,

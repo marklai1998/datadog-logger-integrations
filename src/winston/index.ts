@@ -1,4 +1,5 @@
 import split2 from 'split2';
+import winston from 'winston';
 import {
   DataDogWritableStream,
   type LogStreamConfig,
@@ -44,4 +45,10 @@ export const getDataDogStream = (config: LogStreamConfig) => {
   return parser;
 };
 
-export default getDataDogStream;
+export class DataDogTransport extends winston.transports.Stream {
+  constructor(config: LogStreamConfig) {
+    super({
+      stream: getDataDogStream(config),
+    });
+  }
+}
