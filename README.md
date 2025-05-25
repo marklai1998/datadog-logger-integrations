@@ -47,10 +47,12 @@ pnpm i datadog-logger-integrations
   - [Bunyan](#bunyan)
   - [Consola](#consola)
     - [Use the stream directly](#use-the-stream-directly)
+  - [Electron Log](#electron-log)
+    - [Use the stream directly](#use-the-stream-directly-1)
   - [Pino](#pino)
     - [With Stream API](#with-stream-api)
   - [Winston](#winston)
-    - [Use the stream directly](#use-the-stream-directly-1)
+    - [Use the stream directly](#use-the-stream-directly-2)
 - [Types](#types)
   - [LogStreamConfig](#LogStreamConfig)
 - [Usage with Lambda](#usage-with-lambda)
@@ -147,6 +149,58 @@ const logger = createConsola({
 logger.info('test');
 ```
 
+#### [Electron Log](https://github.com/megahertz/electron-log)
+
+> [!NOTE]  
+> If you want to wait for logs to flush before process close, you must use the Stream API
+
+```ts
+import { LogStreamConfig } from 'datadog-logger-integrations'
+import { dataDogTransport } from 'datadog-logger-integrations/electronLog'
+
+const opts: LogStreamConfig = {
+    ddClientConfig: {
+        authMethods: {
+            apiKeyAuth: apiKey,
+        },
+    },
+    ddTags: 'env:test',
+    ddSource: "my source",
+    service: "my service",
+}
+
+logger.transports.datadog = dataDogTransport(
+  { level: 'debug' }, 
+  opts,
+);
+
+logger.info('test');
+```
+
+##### Use the stream directly
+
+```ts
+import { LogStreamConfig } from 'datadog-logger-integrations'
+import { getDataDogStream } from 'datadog-logger-integrations/electronLog'
+
+const opts: LogStreamConfig = {
+  ddClientConfig: {
+    authMethods: {
+      apiKeyAuth: apiKey,
+    },
+  },
+  ddTags: 'env:test',
+  ddSource: "my source",
+  service: "my service",
+}
+
+const stream = getDataDogStream(opts);
+transport.level = 'debug' as const;
+transport.transforms = [] as TransformFn[];
+logger.transports.datadog = transport;
+
+logger.info('test');
+```
 
 #### [Pino](https://github.com/pinojs/pino)
 
