@@ -10,7 +10,7 @@ export const getDataDogStream = (config: LogStreamConfig) => {
 
   const parser = split2((line: string) => {
     try {
-      const { level, ...parsedItem } = JSON.parse(line);
+      const { level, time, ...parsedItem } = JSON.parse(line);
 
       return config.logMessageBuilder
         ? config.logMessageBuilder(parsedItem)
@@ -19,8 +19,8 @@ export const getDataDogStream = (config: LogStreamConfig) => {
             ddtags: config.ddTags,
             service: config.service,
             message: JSON.stringify({
+              date: time ?? new Date().toISOString(),
               ...parsedItem,
-              date: parsedItem.time,
               level: convertLevel(level),
             }),
             hostname: parsedItem.hostname,

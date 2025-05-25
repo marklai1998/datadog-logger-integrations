@@ -19,8 +19,8 @@ export const getDataDogStream = (config: LogStreamConfig) => {
             ddtags: config.ddTags,
             service: config.service,
             message: JSON.stringify({
+              date: time ?? new Date().toISOString(),
               ...parsedItem,
-              date: parsedItem.time,
               level: convertLevel(level),
             }),
             hostname: parsedItem.hostname,
