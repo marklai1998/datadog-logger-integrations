@@ -210,6 +210,7 @@ describe('getDataDogStream', () => {
       ddSource: faker.string.uuid(),
       service: faker.string.uuid(),
       debug: true,
+      sendIntervalMs: 0,
     });
 
     const logger = winston.createLogger({
