@@ -26,11 +26,22 @@
         "types": "./dist/esm/pino/index.d.ts",
         "default": "./dist/esm/pino/index.mjs"
       }
+    },
+    "./winston": {
+      "require": {
+        "types": "./dist/cjs/winston/index.d.cts",
+        "default": "./dist/cjs/winston/index.cjs"
+      },
+      "import": {
+        "types": "./dist/esm/winston/index.d.ts",
+        "default": "./dist/esm/winston/index.mjs"
+      }
     }
   },
   "typesVersions": {
     "*": {
       "pino": ["./dist/esm/pino/index.d.ts"],
+      "winston": ["./dist/esm/winston/index.d.ts"],
       "*": ["./dist/esm/index.d.ts"]
     }
   },
@@ -52,7 +63,7 @@
     "@biomejs/biome": "1.9.4",
     "@commitlint/cli": "19.8.1",
     "@commitlint/config-conventional": "19.8.1",
-    "@faker-js/faker": "^9.8.0",
+    "@faker-js/faker": "9.8.0",
     "@types/node": "22.15.21",
     "@types/split2": "^4.2.3",
     "@types/supertest": "6.0.3",
@@ -69,10 +80,14 @@
     "vitest": "3.1.4"
   },
   "peerDependencies": {
-    "pino": "^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0"
+    "pino": "^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0",
+    "winston": "^3.0.0"
   },
   "peerDependenciesMeta": {
     "pino": {
+      "optional": true
+    },
+    "winston": {
       "optional": true
     }
   },

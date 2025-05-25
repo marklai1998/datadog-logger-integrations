@@ -19,8 +19,8 @@ export default (config: LogStreamConfig) => {
             ddtags: config.ddTags,
             service: config.service,
             message: JSON.stringify({
+              date: new Date().toISOString(),
               ...parsedItem,
-              date: parsedItem.time,
               level: convertLevel(parsedItem.level),
             }),
             hostname: parsedItem.hostname,

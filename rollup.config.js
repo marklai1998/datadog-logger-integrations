@@ -6,6 +6,7 @@ import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 const input = {
   index: 'src/index.ts',
   'pino/index': 'src/pino/index.ts',
+  'winston/index': 'src/winston/index.ts',
 };
 
 export default [
