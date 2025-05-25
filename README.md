@@ -50,7 +50,7 @@ pnpm i datadog-logger-integrations
   - [Pino](#pino)
     - [With Stream API](#with-stream-api)
   - [Winston](#winston)
-    - [Use the stream directly](#use-the-stream-directly)
+    - [Use the stream directly](#use-the-stream-directly-1)
 - [Types](#types)
   - [LogStreamConfig](#LogStreamConfig)
 - [Usage with Lambda](#usage-with-lambda)
