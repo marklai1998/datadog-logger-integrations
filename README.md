@@ -14,7 +14,7 @@
 
 - ✅ Typescript
 - ✅ Datadog V2 API
-- ✅ Batching log
+- ✅ Log batching 
 - ✅ AWS Lambda support
 
 ## Motivation
