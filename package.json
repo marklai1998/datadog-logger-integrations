@@ -1,6 +1,6 @@
 {
   "name": "datadog-logger-integrations",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Datadog logger integrations",
   "main": "dist/cjs/index.cjs",
   "module": "dist/esm/index.mjs",
