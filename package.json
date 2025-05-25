@@ -2,7 +2,6 @@
   "name": "datadog-logger-integrations",
   "version": "0.0.0",
   "description": "Datadog logger integrations",
-  "type": "module",
   "main": "dist/cjs/index.cjs",
   "module": "dist/esm/index.mjs",
   "types": "dist/esm/index.d.ts",
