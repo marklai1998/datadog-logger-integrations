@@ -14,7 +14,7 @@
 
 - ✅ Typescript
 - ✅ Datadog V2 API
-- ✅ Log batching 
+- ✅ Log batching
 - ✅ AWS Lambda support
 
 ## Motivation
@@ -45,6 +45,8 @@ pnpm i datadog-logger-integrations
 
 - [Integrations](#Integrations)
   - [Bunyan](#bunyan)
+  - [Consola](#consola)
+    - [Use the stream directly](#use-the-stream-directly)
   - [Pino](#pino)
     - [With Stream API](#with-stream-api)
   - [Winston](#winston)
@@ -83,6 +85,69 @@ const logger = bunyan.createLogger({
 logger.info('test');
 ```
 
+#### [Consola](https://github.com/unjs/consola)
+
+> [!NOTE]  
+> If you are using it [with lambda](#usage-with-lambda), you must use the Stream API
+
+```ts
+import { LogStreamConfig } from 'datadog-logger-integrations'
+import { getDataDogStream } from 'datadog-logger-integrations/consola'
+
+const opts: LogStreamConfig = {
+    ddClientConfig: {
+        authMethods: {
+            apiKeyAuth: apiKey,
+        },
+    },
+    ddTags: 'env:test',
+    ddSource: "my source",
+    service: "my service",
+}
+
+const logger = createConsola({
+  reporters: [
+    new DataDogReporter(opts),
+  ],
+});
+
+logger.info('test');
+```
+
+##### Use the stream directly
+
+```ts
+import { LogStreamConfig } from 'datadog-logger-integrations'
+import { getDataDogStream } from 'datadog-logger-integrations/consola'
+
+const opts: LogStreamConfig = {
+    ddClientConfig: {
+        authMethods: {
+            apiKeyAuth: apiKey,
+        },
+    },
+    ddTags: 'env:test',
+    ddSource: "my source",
+    service: "my service",
+}
+
+const stream = getDataDogStream(opts);
+
+const logger = createConsola({
+  reporters: [
+    {
+      log: (logObj) => {
+        if (!stream.writableEnded)
+          stream.write(`${JSON.stringify(logObj)}\n`); // must add new line after that
+      },
+    },
+  ],
+});
+
+logger.info('test');
+```
+
+
 #### [Pino](https://github.com/pinojs/pino)
 
 > [!NOTE]  
@@ -103,9 +168,7 @@ const options: LogStreamConfig = {
 }
 
 const logger = pino(
-    {
-        level: 'debug',
-    },
+    {},
     pino.transport({
       target: 'datadog-logger-integrations/pino',
       options
@@ -135,9 +198,7 @@ const opts: LogStreamConfig = {
 const stream = getDataDogStream(opts);
 
 const logger = pino(
-    {
-        level: 'debug',
-    },
+    {},
     pino.multistream([stream]),
 );
 
@@ -165,7 +226,6 @@ const opts: LogStreamConfig = {
 }
 
 const logger = winston.createLogger({
-    level: 'debug',
     transports: [
         new DataDogTransport(opts),
     ],
@@ -194,7 +254,6 @@ const opts: LogStreamConfig = {
 const stream = getDataDogStream(opts);
 
 const logger = winston.createLogger({
-    level: 'debug',
     transports: [
         new winston.transports.Stream({
             stream,
@@ -248,7 +307,7 @@ const getLogger = () => {
     const stream = getDataDogStream(opts);
 
     const instance = pino(
-        { level: 'debug' },
+        {},
         pino.multistream([stream]),
     );
     
@@ -284,7 +343,7 @@ export const handler = async () => {
   const stream = getDataDogStream(opts);
 
   const logger = pino(
-    { level: 'debug' },
+    {},
     pino.multistream([stream]),
   );
 

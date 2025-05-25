@@ -26,6 +26,16 @@
         "default": "./dist/esm/bunyan/index.mjs"
       }
     },
+    "./consola": {
+      "require": {
+        "types": "./dist/cjs/consola/index.d.cts",
+        "default": "./dist/cjs/consola/index.cjs"
+      },
+      "import": {
+        "types": "./dist/esm/consola/index.d.ts",
+        "default": "./dist/esm/consola/index.mjs"
+      }
+    },
     "./pino": {
       "require": {
         "types": "./dist/cjs/pino/index.d.cts",
@@ -50,6 +60,7 @@
   "typesVersions": {
     "*": {
       "bunyan": ["./dist/esm/bunyan/index.d.ts"],
+      "consola": ["./dist/esm/consola/index.d.ts"],
       "pino": ["./dist/esm/pino/index.d.ts"],
       "winston": ["./dist/esm/winston/index.d.ts"],
       "*": ["./dist/esm/index.d.ts"]
@@ -63,7 +74,15 @@
     "type": "git",
     "url": "git+https://github.com/marklai1998/datadog-logger-integrations"
   },
-  "keywords": ["pino", "datadog", "transport", "logging", "winston", "bunyan"],
+  "keywords": [
+    "pino",
+    "datadog",
+    "transport",
+    "logging",
+    "winston",
+    "bunyan",
+    "consola"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/marklai1998/datadog-logger-integrations/issues"
@@ -92,6 +111,7 @@
   },
   "peerDependencies": {
     "bunyan": "^1.0.0",
+    "consola": "^3.0.0",
     "pino": "^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0",
     "winston": "^3.0.0"
   },
