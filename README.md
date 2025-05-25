@@ -6,9 +6,16 @@
 
 ![NPM](https://img.shields.io/npm/v/datadog-logger-integrations) ![GitHub CI](https://github.com/marklai1998/datadog-logger-integrations/actions/workflows/runTest.yml/badge.svg) [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![npm type definitions](https://img.shields.io/npm/types/typescript.svg)](https://www.typescriptlang.org/)
 
-[Installation](#-installation) | [API](#-api) | [Contributing](#-contributing)
+[Features](#-features) | [Installation](#-installation) |[API](#-api) | [Contributing](#-contributing)
 
 </div>
+
+## ✨ Features
+
+- ✅ Typescript
+- ✅ Datadog V2 API
+- ✅ Batching log
+- ✅ Lambda support
 
 ## 📦 Installation
 
