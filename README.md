@@ -15,7 +15,11 @@
 - ✅ Typescript
 - ✅ Datadog V2 API
 - ✅ Batching log
-- ✅ Lambda support
+- ✅ AWS Lambda support
+
+## Motivation
+
+I am using a Lambda-like platform and experiencing log loss. This lib aims to provide a "correct" stream implementation that allows users to wait for the stream to drain before shutting down.
 
 ## 📦 Installation
 
