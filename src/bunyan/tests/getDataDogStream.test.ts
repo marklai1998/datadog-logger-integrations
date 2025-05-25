@@ -6,7 +6,7 @@ import { expect } from 'vitest';
 import { getDataDogStream } from '../index.js';
 const server = setupServer();
 
-describe('logger', () => {
+describe('getDataDogStream', () => {
   beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
 
   afterAll(() => server.close());
