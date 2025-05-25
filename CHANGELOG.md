@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://github.com/marklai1998/datadog-logger-integrations/compare/v1.0.2...v1.1.0) (2025-05-25)
+
+
+### Features
+
+* **bunyan:** bunyan support ([cc1368e](https://github.com/marklai1998/datadog-logger-integrations/commit/cc1368ef5a91e1ffb199a53d0a485d9521e76699))
+
+
+### Bug Fixes
+
+* log timestamp ([f55ec50](https://github.com/marklai1998/datadog-logger-integrations/commit/f55ec5099e58e70801ca8aee356163f1306f67f4))
+
 ## [1.0.2](https://github.com/marklai1998/datadog-logger-integrations/compare/v1.0.1...v1.0.2) (2025-05-25)
 
 
