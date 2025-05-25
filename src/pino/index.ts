@@ -5,7 +5,7 @@ import {
 } from '../DataDogWritableStream.js';
 import { convertLevel } from '../utils/index.js';
 
-const getDataDogStream = (config: LogStreamConfig) => {
+export const getDataDogStream = (config: LogStreamConfig) => {
   const dd = new DataDogWritableStream(config);
 
   const parser = split2((line: string) => {
