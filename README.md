@@ -2,7 +2,7 @@
 
 <div align="center">
 
-"Transport" for popular logger such as [Pino](https://github.com/pinojs/pino) and [Winston](https://github.com/winstonjs/winston)
+"Transport" for popular logger such as [Pino](https://github.com/pinojs/pino), [Winston](https://github.com/winstonjs/winston) and more!
 
 ![NPM](https://img.shields.io/npm/v/datadog-logger-integrations) ![GitHub CI](https://github.com/marklai1998/datadog-logger-integrations/actions/workflows/runTest.yml/badge.svg) [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![npm type definitions](https://img.shields.io/npm/types/typescript.svg)](https://www.typescriptlang.org/)
 
