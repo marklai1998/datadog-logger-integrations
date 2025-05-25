@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/marklai1998/datadog-logger-integrations/compare/v1.2.0...v1.3.0) (2025-05-25)
+
+
+### Features
+
+* **consola:** consola support ([7ee4d77](https://github.com/marklai1998/datadog-logger-integrations/commit/7ee4d772e9971b5de208334546b65312ca7df4be))
+
 ## [1.2.0](https://github.com/marklai1998/datadog-logger-integrations/compare/v1.1.0...v1.2.0) (2025-05-25)
 
 
