@@ -1,6 +1,6 @@
 {
   "name": "datadog-logger-integrations",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Datadog logger integrations",
   "main": "dist/cjs/index.cjs",
   "module": "dist/esm/index.mjs",
@@ -39,9 +39,15 @@
   },
   "typesVersions": {
     "*": {
-      "pino": ["./dist/esm/pino/index.d.ts"],
-      "winston": ["./dist/esm/winston/index.d.ts"],
-      "*": ["./dist/esm/index.d.ts"]
+      "pino": [
+        "./dist/esm/pino/index.d.ts"
+      ],
+      "winston": [
+        "./dist/esm/winston/index.d.ts"
+      ],
+      "*": [
+        "./dist/esm/index.d.ts"
+      ]
     }
   },
   "scripts": {
@@ -52,7 +58,13 @@
     "type": "git",
     "url": "git+https://github.com/marklai1998/datadog-logger-integrations"
   },
-  "keywords": ["pino", "datadog", "transport", "logging", "typescript"],
+  "keywords": [
+    "pino",
+    "datadog",
+    "transport",
+    "logging",
+    "typescript"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/marklai1998/datadog-logger-integrations/issues"

@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/marklai1998/datadog-logger-integrations/compare/v1.0.1...v1.0.2) (2025-05-25)
+
+
+### Bug Fixes
+
+* **pino:** named export ([c23673a](https://github.com/marklai1998/datadog-logger-integrations/commit/c23673a5fb73c6b7125c399ac2206eb0ace54835))
+
 ## [1.0.1](https://github.com/marklai1998/datadog-logger-integrations/compare/v1.0.0...v1.0.1) (2025-05-25)
 
 
