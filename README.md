@@ -89,7 +89,7 @@ logger.info('test');
 
 ```ts
 import { LogStreamConfig } from 'datadog-logger-integrations'
-import datadogStream from 'datadog-logger-integrations/pino'
+import { getDataDogStream } from 'datadog-logger-integrations/pino'
 
 const opts: LogStreamConfig = {
     ddClientConfig: {
@@ -102,7 +102,7 @@ const opts: LogStreamConfig = {
     service: "my service",
 }
 
-const stream = datadogStream(opts);
+const stream = getDataDogStream(opts);
 
 const logger = pino(
     {
@@ -118,7 +118,7 @@ logger.info('test');
 
 ```ts
 import { LogStreamConfig } from 'datadog-logger-integrations'
-import datadogStream from 'datadog-logger-integrations/winston'
+import { getDataDogStream } from 'datadog-logger-integrations/winston'
 
 const opts: LogStreamConfig = {
     ddClientConfig: {
@@ -131,7 +131,7 @@ const opts: LogStreamConfig = {
     service: "my service",
 }
 
-const stream = datadogStream(opts);
+const stream = getDataDogStream(opts);
 
 const logger = winston.createLogger({
     level: 'debug',
@@ -182,10 +182,10 @@ These examples are with pino, but other integrations work the same way
 #### Example with [Explicit Resource Management](https://github.com/tc39/proposal-explicit-resource-management), require [Node 20.4.0+](https://nodejs.org/en/blog/release/v20.4.0)
 
 ```ts
-import datadogStream from 'datadog-logger-integrations/pino'
+import { getDataDogStream } from 'datadog-logger-integrations/pino'
 
 const getLogger = () => {
-    const stream = datadogStream(opts);
+    const stream = getDataDogStream(opts);
 
     const instance = pino(
         { level: 'debug' },
@@ -218,10 +218,10 @@ export const handler = async () => {
 
 #### Example for Node < Node 20.4.0
 ```ts
-import datadogStream from 'datadog-logger-integrations/pino'
+import { getDataDogStream } from 'datadog-logger-integrations/pino'
 
 export const handler = async () => {
-  const stream = datadogStream(opts);
+  const stream = getDataDogStream(opts);
 
   const logger = pino(
     { level: 'debug' },
