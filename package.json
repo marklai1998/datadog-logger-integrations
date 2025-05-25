@@ -45,13 +45,7 @@
     "type": "git",
     "url": "git+https://github.com/marklai1998/datadog-logger-integrations"
   },
-  "keywords": [
-    "pino",
-    "datadog",
-    "transport",
-    "logging",
-    "typescript"
-  ],
+  "keywords": ["pino", "datadog", "transport", "logging", "typescript"],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/marklai1998/datadog-logger-integrations/issues"
