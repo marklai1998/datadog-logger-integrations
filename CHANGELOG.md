@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/marklai1998/datadog-logger-integrations/compare/v1.3.1...v1.4.0) (2025-05-25)
+
+
+### Features
+
+* **electronLog:** electron log support ([e198afd](https://github.com/marklai1998/datadog-logger-integrations/commit/e198afd7c10c578d9d24522d64c8c9e7067f2bb8))
+
 ## [1.3.1](https://github.com/marklai1998/datadog-logger-integrations/compare/v1.3.0...v1.3.1) (2025-05-25)
 
 
