@@ -60,7 +60,7 @@ pnpm i datadog-logger-integrations
 ```ts
 import { LogStreamConfig } from 'datadog-logger-integrations'
 
-const opts: LogStreamConfig = {
+const options: LogStreamConfig = {
     ddClientConfig: {
         authMethods: {
             apiKeyAuth: apiKey,
@@ -71,14 +71,13 @@ const opts: LogStreamConfig = {
     service: "my service",
 }
 
-const stream = ddStream(opts);
-
 const logger = pino(
     {
         level: 'debug',
     },
     pino.transport({
-        target: 'datadog-logger-integrations/pino'
+      target: 'datadog-logger-integrations/pino',
+      options
     }),
 );
 
