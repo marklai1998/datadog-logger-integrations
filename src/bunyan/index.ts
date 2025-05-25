@@ -10,7 +10,7 @@ export const getDataDogStream = (config: LogStreamConfig) => {
 
   const parser = split2((line: string) => {
     try {
-      const { level, ...parsedItem } = JSON.parse(line);
+      const { time, level, ...parsedItem } = JSON.parse(line);
 
       return config.logMessageBuilder
         ? config.logMessageBuilder(parsedItem)

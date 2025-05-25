@@ -44,6 +44,7 @@ pnpm i datadog-logger-integrations
 ## 💻 API
 
 - [Integrations](#Integrations)
+  - [Bunyan](#bunyan)
   - [Pino](#pino)
     - [With Transport API](#with-transport-api)
     - [With Stream API](#with-stream-api)
@@ -54,7 +55,35 @@ pnpm i datadog-logger-integrations
 
 ### Integrations
 
-#### Pino
+#### [Bunyan](https://github.com/trentm/node-bunyan)
+
+```ts
+import { LogStreamConfig } from 'datadog-logger-integrations'
+import { getDataDogStream } from 'datadog-logger-integrations/bunyan'
+
+const opts: LogStreamConfig = {
+    ddClientConfig: {
+        authMethods: {
+            apiKeyAuth: apiKey,
+        },
+    },
+    ddTags: 'env:test',
+    ddSource: "my source",
+    service: "my service",
+}
+
+const stream = getDataDogStream(opts);
+
+const logger = bunyan.createLogger({
+  name: 'test',
+  level: 'debug',
+  stream,
+});
+
+logger.info('test');
+```
+
+#### [Pino](https://github.com/pinojs/pino)
 
 > [!NOTE]  
 > If you are using it [with lambda](#usage-with-lambda), you must use the Stream API
@@ -117,7 +146,7 @@ const logger = pino(
 logger.info('test');
 ```
 
-#### Winston
+#### [Winston](https://github.com/winstonjs/winston)
 
 ```ts
 import { LogStreamConfig } from 'datadog-logger-integrations'

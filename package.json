@@ -16,6 +16,16 @@
         "default": "./dist/esm/index.mjs"
       }
     },
+    "./bunyan": {
+      "require": {
+        "types": "./dist/cjs/bunyan/index.d.cts",
+        "default": "./dist/cjs/bunyan/index.cjs"
+      },
+      "import": {
+        "types": "./dist/esm/bunyan/index.d.ts",
+        "default": "./dist/esm/bunyan/index.mjs"
+      }
+    },
     "./pino": {
       "require": {
         "types": "./dist/cjs/pino/index.d.cts",
@@ -39,6 +49,7 @@
   },
   "typesVersions": {
     "*": {
+      "bunyan": ["./dist/esm/bunyan/index.d.ts"],
       "pino": ["./dist/esm/pino/index.d.ts"],
       "winston": ["./dist/esm/winston/index.d.ts"],
       "*": ["./dist/esm/index.d.ts"]
@@ -52,7 +63,7 @@
     "type": "git",
     "url": "git+https://github.com/marklai1998/datadog-logger-integrations"
   },
-  "keywords": ["pino", "datadog", "transport", "logging", "typescript"],
+  "keywords": ["pino", "datadog", "transport", "logging", "winston", "bunyan"],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/marklai1998/datadog-logger-integrations/issues"
@@ -63,6 +74,7 @@
     "@commitlint/cli": "19.8.1",
     "@commitlint/config-conventional": "19.8.1",
     "@faker-js/faker": "9.8.0",
+    "@types/bunyan": "^1.8.11",
     "@types/node": "22.15.21",
     "@types/split2": "^4.2.3",
     "@types/supertest": "6.0.3",
@@ -79,10 +91,14 @@
     "vitest": "3.1.4"
   },
   "peerDependencies": {
+    "bunyan": "^1.0.0",
     "pino": "^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0",
     "winston": "^3.0.0"
   },
   "peerDependenciesMeta": {
+    "bunyan": {
+      "optional": true
+    },
     "pino": {
       "optional": true
     },
