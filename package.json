@@ -59,21 +59,11 @@
   },
   "typesVersions": {
     "*": {
-      "bunyan": [
-        "./dist/esm/bunyan/index.d.ts"
-      ],
-      "consola": [
-        "./dist/esm/consola/index.d.ts"
-      ],
-      "pino": [
-        "./dist/esm/pino/index.d.ts"
-      ],
-      "winston": [
-        "./dist/esm/winston/index.d.ts"
-      ],
-      "*": [
-        "./dist/esm/index.d.ts"
-      ]
+      "bunyan": ["./dist/esm/bunyan/index.d.ts"],
+      "consola": ["./dist/esm/consola/index.d.ts"],
+      "pino": ["./dist/esm/pino/index.d.ts"],
+      "winston": ["./dist/esm/winston/index.d.ts"],
+      "*": ["./dist/esm/index.d.ts"]
     }
   },
   "scripts": {
