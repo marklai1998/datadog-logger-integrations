@@ -59,7 +59,7 @@ describe('dataDogTransport', () => {
     await new Promise((resolve) => setTimeout(resolve, 5000));
 
     expect(api).toBeCalledTimes(1);
-  });
+  }, 10000);
 
   it('send logs with interval', async () => {
     const api = vi.fn();
