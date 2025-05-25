@@ -119,6 +119,9 @@
     "bunyan": {
       "optional": true
     },
+    "consola": {
+      "optional": true
+    },
     "pino": {
       "optional": true
     },
