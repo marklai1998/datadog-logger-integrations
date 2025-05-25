@@ -49,18 +49,10 @@
   },
   "typesVersions": {
     "*": {
-      "bunyan": [
-        "./dist/esm/bunyan/index.d.ts"
-      ],
-      "pino": [
-        "./dist/esm/pino/index.d.ts"
-      ],
-      "winston": [
-        "./dist/esm/winston/index.d.ts"
-      ],
-      "*": [
-        "./dist/esm/index.d.ts"
-      ]
+      "bunyan": ["./dist/esm/bunyan/index.d.ts"],
+      "pino": ["./dist/esm/pino/index.d.ts"],
+      "winston": ["./dist/esm/winston/index.d.ts"],
+      "*": ["./dist/esm/index.d.ts"]
     }
   },
   "scripts": {
@@ -71,14 +63,7 @@
     "type": "git",
     "url": "git+https://github.com/marklai1998/datadog-logger-integrations"
   },
-  "keywords": [
-    "pino",
-    "datadog",
-    "transport",
-    "logging",
-    "winston",
-    "bunyan"
-  ],
+  "keywords": ["pino", "datadog", "transport", "logging", "winston", "bunyan"],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/marklai1998/datadog-logger-integrations/issues"
