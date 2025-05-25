@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/marklai1998/datadog-logger-integrations/compare/v1.1.0...v1.2.0) (2025-05-25)
+
+
+### Features
+
+* export winston transport ([a805669](https://github.com/marklai1998/datadog-logger-integrations/commit/a805669f3d45c08c9be9fa8b7ab7d56f49ed0ed1))
+
 ## [1.1.0](https://github.com/marklai1998/datadog-logger-integrations/compare/v1.0.2...v1.1.0) (2025-05-25)
 
 
