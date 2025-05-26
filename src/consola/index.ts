@@ -1,9 +1,7 @@
 import type { Writable } from 'node:stream';
 import type { LogObject } from 'consola';
-import {
-  DataDogWritableStream,
-  type LogStreamConfig,
-} from '../DataDogWritableStream.js';
+import { DataDogWritableStream } from '../DataDogWritableStream.js';
+import type { LogStreamConfig } from '../types';
 
 export const convertLevel = (level: number | string): string => {
   if (typeof level === 'string') return level;

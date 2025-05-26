@@ -1,8 +1,6 @@
 import winston, { type LogEntry } from 'winston';
-import {
-  DataDogWritableStream,
-  type LogStreamConfig,
-} from '../DataDogWritableStream.js';
+import { DataDogWritableStream } from '../DataDogWritableStream.js';
+import type { LogStreamConfig } from '../types';
 import { convertLevel } from '../utils/index.js';
 
 export const getDataDogStream = (config: LogStreamConfig<LogEntry>) =>
