@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/marklai1998/datadog-logger-integrations/compare/v1.5.0...v1.5.1) (2025-05-26)
+
+
+### Bug Fixes
+
+* allow use stream directly ([01ed18b](https://github.com/marklai1998/datadog-logger-integrations/commit/01ed18b0c45714b94c4ec2b2be06a3e88eff4dbd))
+
 ## [1.5.0](https://github.com/marklai1998/datadog-logger-integrations/compare/v1.4.0...v1.5.0) (2025-05-26)
 
 
