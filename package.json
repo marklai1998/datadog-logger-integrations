@@ -2,9 +2,7 @@
   "name": "datadog-logger-integrations",
   "version": "1.5.1",
   "description": "Datadog logger integrations",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "main": "dist/cjs/index.cjs",
   "module": "dist/esm/index.mjs",
   "types": "dist/esm/index.d.ts",
@@ -72,24 +70,12 @@
   },
   "typesVersions": {
     "*": {
-      "bunyan": [
-        "./dist/esm/bunyan/index.d.ts"
-      ],
-      "consola": [
-        "./dist/esm/consola/index.d.ts"
-      ],
-      "electronLog": [
-        "./dist/esm/electronLog/index.d.ts"
-      ],
-      "pino": [
-        "./dist/esm/pino/index.d.ts"
-      ],
-      "winston": [
-        "./dist/esm/winston/index.d.ts"
-      ],
-      "*": [
-        "./dist/esm/index.d.ts"
-      ]
+      "bunyan": ["./dist/esm/bunyan/index.d.ts"],
+      "consola": ["./dist/esm/consola/index.d.ts"],
+      "electronLog": ["./dist/esm/electronLog/index.d.ts"],
+      "pino": ["./dist/esm/pino/index.d.ts"],
+      "winston": ["./dist/esm/winston/index.d.ts"],
+      "*": ["./dist/esm/index.d.ts"]
     }
   },
   "scripts": {
