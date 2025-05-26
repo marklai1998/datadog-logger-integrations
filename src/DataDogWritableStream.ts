@@ -63,16 +63,19 @@ export class DataDogWritableStream<
     _encoding: unknown,
     callback: (err?: Error | null) => void,
   ) {
+    if (this.config.debug) {
+      console.log(`[DataDogWritableStream] Log received: ${item}`);
+    }
     const parsedItems = parseStreamLine<T>(item);
     if (this.config.debug) {
       console.log(
-        `[DataDogWritableStream] Parsed item ${JSON.stringify(parsedItems)}`,
+        `[DataDogWritableStream] Parsed item: ${JSON.stringify(parsedItems)}`,
       );
     }
     const transformed = parsedItems.map(this.config.logMessageBuilder);
     if (this.config.debug) {
       console.log(
-        `[DataDogWritableStream] Enqueue ${JSON.stringify(transformed)}`,
+        `[DataDogWritableStream] Enqueue: ${JSON.stringify(transformed)}`,
       );
     }
     this.batch.push(...transformed);

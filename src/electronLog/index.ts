@@ -5,33 +5,22 @@ import {
 } from '../DataDogWritableStream.js';
 import { convertLevel } from '../utils/index.js';
 
-export const getDataDogStream = (config: LogStreamConfig<LogMessage>) => {
-  const dd = new DataDogWritableStream<LogMessage>({
+export const getDataDogStream = (config: LogStreamConfig<LogMessage>) =>
+  new DataDogWritableStream<LogMessage>({
     ...config,
     logMessageBuilder:
       config.logMessageBuilder ??
-      ((input) => {
-        if (config.debug) {
-          console.log(
-            `[DataDogWritableStream] Log received ${JSON.stringify(input)}`,
-          );
-        }
-        const { level, date, ...parsedItem } = input;
-        return {
-          ddsource: config.ddSource,
-          ddtags: config.ddTags,
-          service: config.service,
-          message: JSON.stringify({
-            date: date ?? new Date().toISOString(),
-            ...parsedItem,
-            level: convertLevel(level),
-          }),
-        };
-      }),
+      (({ level, date, ...parsedItem }) => ({
+        ddsource: config.ddSource,
+        ddtags: config.ddTags,
+        service: config.service,
+        message: JSON.stringify({
+          date: date ?? new Date().toISOString(),
+          ...parsedItem,
+          level: convertLevel(level),
+        }),
+      })),
   });
-
-  return dd;
-};
 
 export const dataDogTransport = (
   {

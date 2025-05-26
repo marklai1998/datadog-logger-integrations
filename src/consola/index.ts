@@ -20,26 +20,18 @@ export const getDataDogStream = (config: LogStreamConfig<LogObject>) =>
     ...config,
     logMessageBuilder:
       config.logMessageBuilder ??
-      ((input) => {
-        if (config.debug) {
-          console.log(
-            `[DataDogWritableStream] Log received ${JSON.stringify(input)}`,
-          );
-        }
-        // level is the log level of the logger, not interested
-        const { type, date, level, hostname, ...parsedItem } = input;
-        return {
-          ddsource: config.ddSource,
-          ddtags: config.ddTags,
-          service: config.service,
-          message: JSON.stringify({
-            date: date ?? new Date().toISOString(),
-            ...parsedItem,
-            level: convertLevel(type),
-          }),
-          hostname: typeof hostname === 'string' ? hostname : undefined,
-        };
-      }),
+      // level is the log level of the logger, not interested
+      (({ type, date, level, hostname, ...parsedItem }) => ({
+        ddsource: config.ddSource,
+        ddtags: config.ddTags,
+        service: config.service,
+        message: JSON.stringify({
+          date: date ?? new Date().toISOString(),
+          ...parsedItem,
+          level: convertLevel(type),
+        }),
+        hostname: typeof hostname === 'string' ? hostname : undefined,
+      })),
   });
 
 export class DataDogReporter {

@@ -15,25 +15,17 @@ export const getDataDogStream = (config: LogStreamConfig<LogType>) =>
     ...config,
     logMessageBuilder:
       config.logMessageBuilder ??
-      ((input) => {
-        if (config.debug) {
-          console.log(
-            `[DataDogWritableStream] Log received ${JSON.stringify(input)}`,
-          );
-        }
-        const { level, time, hostname, ...parsedItem } = input;
-        return {
-          ddsource: config.ddSource,
-          ddtags: config.ddTags,
-          service: config.service,
-          message: JSON.stringify({
-            date: time ? new Date(time) : new Date().toISOString(),
-            ...parsedItem,
-            level: convertLevel(level),
-          }),
-          hostname,
-        };
-      }),
+      (({ level, time, hostname, ...parsedItem }) => ({
+        ddsource: config.ddSource,
+        ddtags: config.ddTags,
+        service: config.service,
+        message: JSON.stringify({
+          date: time ? new Date(time) : new Date().toISOString(),
+          ...parsedItem,
+          level: convertLevel(level),
+        }),
+        hostname,
+      })),
   });
 
 // Default export for transport API
