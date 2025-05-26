@@ -1,6 +1,5 @@
-import type { Transform } from 'node:stream';
+import type { Writable } from 'node:stream';
 import type { LogObject } from 'consola';
-import split2 from 'split2';
 import {
   DataDogWritableStream,
   type LogStreamConfig,
@@ -16,50 +15,37 @@ export const convertLevel = (level: number | string): string => {
   return 'trace';
 };
 
-export const getDataDogStream = (config: LogStreamConfig) => {
-  const dd = new DataDogWritableStream(config);
-
-  const parser = split2((line: string) => {
-    try {
-      // level is the log level of the logger, not interested
-      const { type, date, level, ...parsedItem } = JSON.parse(line);
-
-      return config.logMessageBuilder
-        ? config.logMessageBuilder(parsedItem)
-        : {
-            ddsource: config.ddSource,
-            ddtags: config.ddTags,
-            service: config.service,
-            message: JSON.stringify({
-              date: date ?? new Date().toISOString(),
-              ...parsedItem,
-              level: convertLevel(type),
-            }),
-            hostname: parsedItem.hostname,
-          };
-    } catch (err) {
-      console.error('[dataDogStream] Data parse failed:', err);
-      return {};
-    }
+export const getDataDogStream = (config: LogStreamConfig<LogObject>) =>
+  new DataDogWritableStream<LogObject>({
+    ...config,
+    logMessageBuilder:
+      config.logMessageBuilder ??
+      ((input) => {
+        if (config.debug) {
+          console.log(
+            `[DataDogWritableStream] Log received ${JSON.stringify(input)}`,
+          );
+        }
+        // level is the log level of the logger, not interested
+        const { type, date, level, hostname, ...parsedItem } = input;
+        return {
+          ddsource: config.ddSource,
+          ddtags: config.ddTags,
+          service: config.service,
+          message: JSON.stringify({
+            date: date ?? new Date().toISOString(),
+            ...parsedItem,
+            level: convertLevel(type),
+          }),
+          hostname: typeof hostname === 'string' ? hostname : undefined,
+        };
+      }),
   });
 
-  parser.pipe(dd);
-
-  // Override _final of splitter to await DataDogWritableStream's _final
-  const origFinal = parser._final.bind(parser);
-  parser._final = (callback) => {
-    dd.end(() => {
-      origFinal(callback);
-    });
-  };
-
-  return parser;
-};
-
 export class DataDogReporter {
-  stream: Transform;
+  stream: Writable;
 
-  constructor(config: LogStreamConfig) {
+  constructor(config: LogStreamConfig<LogObject>) {
     this.stream = getDataDogStream(config);
   }
 

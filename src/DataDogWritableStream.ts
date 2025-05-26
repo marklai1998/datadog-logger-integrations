@@ -1,7 +1,12 @@
 import { Writable } from 'node:stream';
 import { client, v2 } from '@datadog/datadog-api-client';
+import { parseStreamLine } from './utils/parseStreamLine';
 
-export type LogStreamConfig = {
+export type LogMessageBuilder<T = Record<string, unknown>> = (
+  log: T,
+) => v2.HTTPLogItem;
+
+export type LogStreamConfig<T = Record<string, unknown>> = {
   ddClientConfig?: Parameters<typeof client.createConfiguration>[0];
   ddServerConfig?: {
     site?: string;
@@ -13,21 +18,25 @@ export type LogStreamConfig = {
   service?: string;
   sendIntervalMs?: number;
   batchSize?: number;
-  logMessageBuilder?: (
-    log: Record<string, unknown>,
-  ) => v2.LogsApiSubmitLogRequest['body'][number];
+  logMessageBuilder?: LogMessageBuilder<T>;
 
   debug?: boolean;
 };
 
-export class DataDogWritableStream extends Writable {
+export class DataDogWritableStream<
+  T = Record<string, unknown>,
+> extends Writable {
   apiInstance: v2.LogsApi;
-  batch: v2.LogsApiSubmitLogRequest['body'] = [];
+  batch: v2.HTTPLogItem[] = [];
   timer?: NodeJS.Timeout;
 
   flushJob?: Promise<void>;
 
-  constructor(private readonly config: LogStreamConfig) {
+  constructor(
+    private readonly config: LogStreamConfig<T> & {
+      logMessageBuilder: LogMessageBuilder<T>;
+    },
+  ) {
     super({ objectMode: true });
 
     const clientConfig = client.createConfiguration(this.config.ddClientConfig);
@@ -50,14 +59,23 @@ export class DataDogWritableStream extends Writable {
   }
 
   override async _write(
-    item: v2.LogsApiSubmitLogRequest['body'][number],
+    item: string | string[] | object,
     _encoding: unknown,
     callback: (err?: Error | null) => void,
   ) {
+    const parsedItems = parseStreamLine<T>(item);
     if (this.config.debug) {
-      console.log(`[DataDogWritableStream] Enqueue ${JSON.stringify(item)}`);
+      console.log(
+        `[DataDogWritableStream] Parsed item ${JSON.stringify(parsedItems)}`,
+      );
     }
-    this.batch.push(item);
+    const transformed = parsedItems.map(this.config.logMessageBuilder);
+    if (this.config.debug) {
+      console.log(
+        `[DataDogWritableStream] Enqueue ${JSON.stringify(transformed)}`,
+      );
+    }
+    this.batch.push(...transformed);
 
     if (
       this.batch.length >= (this.config?.batchSize ?? 10) ||
@@ -92,7 +110,7 @@ export class DataDogWritableStream extends Writable {
     }
   }
 
-  async flush(batch: v2.LogsApiSubmitLogRequest['body']) {
+  async flush(batch: v2.HTTPLogItem[]) {
     if (this.config.debug) {
       console.log(`[DataDogWritableStream] Flush: ${JSON.stringify(batch)}`);
     }

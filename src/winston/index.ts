@@ -1,52 +1,38 @@
-import split2 from 'split2';
-import winston from 'winston';
+import winston, { type LogEntry } from 'winston';
 import {
   DataDogWritableStream,
   type LogStreamConfig,
 } from '../DataDogWritableStream.js';
 import { convertLevel } from '../utils/index.js';
 
-export const getDataDogStream = (config: LogStreamConfig) => {
-  const dd = new DataDogWritableStream(config);
-
-  const parser = split2((line: string) => {
-    try {
-      const parsedItem = JSON.parse(line);
-
-      return config.logMessageBuilder
-        ? config.logMessageBuilder(parsedItem)
-        : {
-            ddsource: config.ddSource,
-            ddtags: config.ddTags,
-            service: config.service,
-            message: JSON.stringify({
-              date: new Date().toISOString(),
-              ...parsedItem,
-              level: convertLevel(parsedItem.level),
-            }),
-            hostname: parsedItem.hostname,
-          };
-    } catch (err) {
-      console.error('[dataDogStream] Data parse failed:', err);
-      return {};
-    }
+export const getDataDogStream = (config: LogStreamConfig<LogEntry>) =>
+  new DataDogWritableStream<LogEntry>({
+    ...config,
+    logMessageBuilder:
+      config.logMessageBuilder ??
+      ((input) => {
+        if (config.debug) {
+          console.log(
+            `[DataDogWritableStream] Log received ${JSON.stringify(input)}`,
+          );
+        }
+        const { level, hostname, ...parsedItem } = input;
+        return {
+          ddsource: config.ddSource,
+          ddtags: config.ddTags,
+          service: config.service,
+          message: JSON.stringify({
+            date: new Date().toISOString(),
+            ...parsedItem,
+            level: convertLevel(level),
+          }),
+          hostname: typeof hostname === 'string' ? hostname : hostname,
+        };
+      }),
   });
 
-  parser.pipe(dd);
-
-  // Override _final of splitter to await DataDogWritableStream's _final
-  const origFinal = parser._final.bind(parser);
-  parser._final = (callback) => {
-    dd.end(() => {
-      origFinal(callback);
-    });
-  };
-
-  return parser;
-};
-
 export class DataDogTransport extends winston.transports.Stream {
-  constructor(config: LogStreamConfig) {
+  constructor(config: LogStreamConfig<LogEntry>) {
     super({
       stream: getDataDogStream(config),
     });
