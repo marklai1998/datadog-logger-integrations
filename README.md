@@ -46,15 +46,16 @@ pnpm i datadog-logger-integrations
 - [Integrations](#Integrations)
   - [Bunyan](#bunyan)
   - [Consola](#consola)
-    - [Use the stream directly](#use-the-stream-directly)
+    - [Stream API](#stream-api)
   - [Electron Log](#electron-log)
-    - [Use the stream directly](#use-the-stream-directly-1)
+    - [Stream API](#stream-api-1)
   - [Pino](#pino)
     - [With Stream API](#with-stream-api)
   - [Winston](#winston)
-    - [Use the stream directly](#use-the-stream-directly-2)
+    - [Stream API](#stream-api-2)
 - [Types](#types)
   - [LogStreamConfig](#LogStreamConfig)
+- [Use the stream directly](#use-the-stream-directly)
 - [Usage with Lambda](#usage-with-lambda)
 
 ### Integrations
@@ -116,7 +117,7 @@ const logger = createConsola({
 logger.info('test');
 ```
 
-##### Use the stream directly
+##### Stream API
 
 ```ts
 import { LogStreamConfig } from 'datadog-logger-integrations'
@@ -177,7 +178,7 @@ logger.transports.datadog = dataDogTransport(
 logger.info('test');
 ```
 
-##### Use the stream directly
+##### Stream API
 
 ```ts
 import { LogStreamConfig } from 'datadog-logger-integrations'
@@ -288,7 +289,7 @@ const logger = winston.createLogger({
 logger.info('test');
 ```
 
-##### Use the stream directly
+##### Stream API
 
 ```ts
 import { LogStreamConfig } from 'datadog-logger-integrations'
@@ -343,6 +344,41 @@ export type LogStreamConfig = {
 
     debug?: boolean;
 };
+```
+
+### Use the stream directly
+
+You could integrate to any logger that support writable stream by using the stream directly
+
+But please consider contribute to this repo, so everyone can use it!
+
+```ts
+import { DataDogWritableStream, LogStreamConfig } from 'datadog-logger-integrations'
+
+const opts: LogStreamConfig = {
+  ddClientConfig: {
+    authMethods: {
+      apiKeyAuth: apiKey,
+    },
+  },
+}
+
+const logger = fancyLogger({
+  stream: new DataDogWritableStream({
+    ...opts,
+    // You must provide your own builder function that takes the logger input and convert to DataDog format
+    logMessageBuilder: (({ hostname, ...parsedItem }) => ({
+      ddsource: "some source",
+      ddtags: "tags",
+      service: "unknown service",
+      message: JSON.stringify({
+        date: new Date().toISOString(),
+        ...parsedItem,
+      }),
+      hostname,
+    }))
+  })
+})
 ```
 
 ### Usage with Lambda

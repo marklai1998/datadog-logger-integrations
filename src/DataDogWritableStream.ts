@@ -1,6 +1,6 @@
 import { Writable } from 'node:stream';
 import { client, v2 } from '@datadog/datadog-api-client';
-import type { LogMessageBuilder, LogStreamConfig } from './types/index.js';
+import type { LogMessageBuilder } from './types/index.js';
 import { parseStreamLine } from './utils/parseStreamLine';
 
 export class DataDogWritableStream<
@@ -13,7 +13,16 @@ export class DataDogWritableStream<
   flushJob?: Promise<void>;
 
   constructor(
-    private readonly config: LogStreamConfig<T> & {
+    private readonly config: {
+      ddClientConfig?: Parameters<typeof client.createConfiguration>[0];
+      ddServerConfig?: {
+        site?: string;
+        subdomain?: string;
+        protocol?: string;
+      };
+      sendIntervalMs?: number;
+      batchSize?: number;
+      debug?: boolean;
       logMessageBuilder: LogMessageBuilder<T>;
     },
   ) {
