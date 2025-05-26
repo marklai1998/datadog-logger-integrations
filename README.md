@@ -140,7 +140,7 @@ const logger = createConsola({
     {
       log: (logObj) => {
         if (!stream.writableEnded)
-          stream.write(`${JSON.stringify(logObj)}\n`); // must add new line after that
+          stream.write(logObj);
       },
     },
   ],
