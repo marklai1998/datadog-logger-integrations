@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/marklai1998/datadog-logger-integrations/compare/v1.4.0...v1.5.0) (2025-05-26)
+
+
+### Features
+
+* remove split2 deps ([376aa3f](https://github.com/marklai1998/datadog-logger-integrations/commit/376aa3fd82e7adb230b981ae66a8fd05310990a2))
+
 ## [1.4.0](https://github.com/marklai1998/datadog-logger-integrations/compare/v1.3.1...v1.4.0) (2025-05-25)
 
 
