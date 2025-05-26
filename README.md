@@ -13,8 +13,9 @@
 ## ✨ Features
 
 - ✅ Typescript
-- ✅ Datadog V2 API
-- ✅ Log batching
+- ✅ DataDog V2 API
+- ✅ Performance, with log batching
+- ✅ Lightweight, only 1 dependency(DataDog SDK of course)
 - ✅ AWS Lambda support
 
 ## Motivation
