@@ -1,4 +1,4 @@
-import type { client, v2 } from '@datadog/datadog-api-client';
+import type { client, v2 } from "@datadog/datadog-api-client";
 
 export type LogMessageBuilder<T = Record<string, unknown>> = (
   log: T,

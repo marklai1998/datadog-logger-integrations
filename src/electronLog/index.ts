@@ -1,7 +1,7 @@
-import type { LevelOption, LogMessage, TransformFn } from 'electron-log';
-import { DataDogWritableStream } from '../DataDogWritableStream.js';
-import type { LogStreamConfig } from '../types';
-import { convertLevel } from '../utils/index.js';
+import type { LevelOption, LogMessage, TransformFn } from "electron-log";
+import { DataDogWritableStream } from "../DataDogWritableStream.js";
+import type { LogStreamConfig } from "../types";
+import { convertLevel } from "../utils/index.js";
 
 export const getDataDogStream = (config: LogStreamConfig<LogMessage>) =>
   new DataDogWritableStream<LogMessage>({
@@ -22,7 +22,7 @@ export const getDataDogStream = (config: LogStreamConfig<LogMessage>) =>
 
 export const dataDogTransport = (
   {
-    level = 'info' as const,
+    level = "info" as const,
     transforms = [],
   }: { level?: LevelOption; transforms?: TransformFn[] },
   config: LogStreamConfig<LogMessage>,

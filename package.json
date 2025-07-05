@@ -2,7 +2,9 @@
   "name": "datadog-logger-integrations",
   "version": "1.5.1",
   "description": "Datadog logger integrations",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "main": "dist/cjs/index.cjs",
   "module": "dist/esm/index.mjs",
   "types": "dist/esm/index.d.ts",
@@ -70,12 +72,24 @@
   },
   "typesVersions": {
     "*": {
-      "bunyan": ["./dist/esm/bunyan/index.d.ts"],
-      "consola": ["./dist/esm/consola/index.d.ts"],
-      "electronLog": ["./dist/esm/electronLog/index.d.ts"],
-      "pino": ["./dist/esm/pino/index.d.ts"],
-      "winston": ["./dist/esm/winston/index.d.ts"],
-      "*": ["./dist/esm/index.d.ts"]
+      "bunyan": [
+        "./dist/esm/bunyan/index.d.ts"
+      ],
+      "consola": [
+        "./dist/esm/consola/index.d.ts"
+      ],
+      "electronLog": [
+        "./dist/esm/electronLog/index.d.ts"
+      ],
+      "pino": [
+        "./dist/esm/pino/index.d.ts"
+      ],
+      "winston": [
+        "./dist/esm/winston/index.d.ts"
+      ],
+      "*": [
+        "./dist/esm/index.d.ts"
+      ]
     }
   },
   "scripts": {
@@ -101,23 +115,23 @@
   },
   "homepage": "https://github.com/marklai1998/datadog-logger-integrations#readme",
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
+    "@biomejs/biome": "2.0.6",
     "@commitlint/cli": "19.8.1",
     "@commitlint/config-conventional": "19.8.1",
-    "@faker-js/faker": "9.8.0",
+    "@faker-js/faker": "9.9.0",
     "@types/bunyan": "^1.8.11",
-    "@types/node": "22.15.31",
+    "@types/node": "22.16.0",
     "@types/supertest": "6.0.3",
-    "@vitest/coverage-v8": "3.2.3",
-    "lefthook": "1.11.13",
+    "@vitest/coverage-v8": "3.2.4",
+    "lefthook": "1.11.16",
     "msw": "^2.8.4",
-    "rollup": "4.43.0",
+    "rollup": "4.44.2",
     "rollup-plugin-dts": "6.2.1",
     "rollup-plugin-esbuild": "6.2.1",
-    "rollup-plugin-node-externals": "8.0.0",
+    "rollup-plugin-node-externals": "8.0.1",
     "rollup-plugin-peer-deps-external": "2.2.4",
     "typescript": "5.8.3",
-    "vitest": "3.2.3"
+    "vitest": "3.2.4"
   },
   "peerDependencies": {
     "bunyan": "^1.0.0",
@@ -143,7 +157,7 @@
       "optional": true
     }
   },
-  "packageManager": "pnpm@10.12.1",
+  "packageManager": "pnpm@10.12.4",
   "engines": {
     "node": ">=18"
   },

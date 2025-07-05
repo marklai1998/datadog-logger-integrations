@@ -1,7 +1,7 @@
-import { Writable } from 'node:stream';
-import { client, v2 } from '@datadog/datadog-api-client';
-import type { LogMessageBuilder } from './types/index.js';
-import { parseStreamLine } from './utils/parseStreamLine';
+import { Writable } from "node:stream";
+import { client, v2 } from "@datadog/datadog-api-client";
+import type { LogMessageBuilder } from "./types/index.js";
+import { parseStreamLine } from "./utils/parseStreamLine";
 
 export class DataDogWritableStream<
   T = Record<string, unknown>,
@@ -84,7 +84,7 @@ export class DataDogWritableStream<
     clearInterval(this.timer); // Clean up the interval
     try {
       if (this.config.debug) {
-        console.log('[DataDogWritableStream] _final flush');
+        console.log("[DataDogWritableStream] _final flush");
       }
 
       if (this.flushJob) {
@@ -112,7 +112,7 @@ export class DataDogWritableStream<
     try {
       const params: v2.LogsApiSubmitLogRequest = {
         body: batch,
-        contentEncoding: 'deflate',
+        contentEncoding: "deflate",
       };
       if (this.config.debug) {
         console.log(
@@ -121,10 +121,10 @@ export class DataDogWritableStream<
       }
       await this.apiInstance.submitLog(params);
       if (this.config.debug) {
-        console.log('[DataDogWritableStream] Log sent');
+        console.log("[DataDogWritableStream] Log sent");
       }
     } catch (err) {
-      console.error('[DataDogWritableStream] Batch send failed:', err);
+      console.error("[DataDogWritableStream] Batch send failed:", err);
     }
   }
 }
