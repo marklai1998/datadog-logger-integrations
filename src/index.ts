@@ -1,2 +1,2 @@
-export * from './types/index.js';
-export * from './DataDogWritableStream.js';
+export * from "./DataDogWritableStream.js";
+export * from "./types/index.js";

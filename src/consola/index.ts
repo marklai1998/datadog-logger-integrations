@@ -1,16 +1,16 @@
-import type { Writable } from 'node:stream';
-import type { LogObject } from 'consola';
-import { DataDogWritableStream } from '../DataDogWritableStream.js';
-import type { LogStreamConfig } from '../types';
+import type { Writable } from "node:stream";
+import type { LogObject } from "consola";
+import { DataDogWritableStream } from "../DataDogWritableStream.js";
+import type { LogStreamConfig } from "../types";
 
 export const convertLevel = (level: number | string): string => {
-  if (typeof level === 'string') return level;
-  if (level === 0) return 'error';
-  if (level === 1) return 'warning';
-  if (level === 2) return 'info';
-  if (level === 3) return 'info';
-  if (level === 4) return 'debug';
-  return 'trace';
+  if (typeof level === "string") return level;
+  if (level === 0) return "error";
+  if (level === 1) return "warning";
+  if (level === 2) return "info";
+  if (level === 3) return "info";
+  if (level === 4) return "debug";
+  return "trace";
 };
 
 export const getDataDogStream = (config: LogStreamConfig<LogObject>) =>
@@ -28,7 +28,7 @@ export const getDataDogStream = (config: LogStreamConfig<LogObject>) =>
           ...parsedItem,
           level: convertLevel(type),
         }),
-        hostname: typeof hostname === 'string' ? hostname : undefined,
+        hostname: typeof hostname === "string" ? hostname : undefined,
       })),
   });
 

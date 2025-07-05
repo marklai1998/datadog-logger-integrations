@@ -1,7 +1,7 @@
-import winston, { type LogEntry } from 'winston';
-import { DataDogWritableStream } from '../DataDogWritableStream.js';
-import type { LogStreamConfig } from '../types';
-import { convertLevel } from '../utils/index.js';
+import winston, { type LogEntry } from "winston";
+import { DataDogWritableStream } from "../DataDogWritableStream.js";
+import type { LogStreamConfig } from "../types";
+import { convertLevel } from "../utils/index.js";
 
 export const getDataDogStream = (config: LogStreamConfig<LogEntry>) =>
   new DataDogWritableStream<LogEntry>({
@@ -17,7 +17,7 @@ export const getDataDogStream = (config: LogStreamConfig<LogEntry>) =>
           ...parsedItem,
           level: convertLevel(level),
         }),
-        hostname: typeof hostname === 'string' ? hostname : hostname,
+        hostname: typeof hostname === "string" ? hostname : hostname,
       })),
   });
 
