@@ -5,6 +5,7 @@ on:
       - main
 
 permissions:
+  id-token: write
   contents: write
   pull-requests: write
   issues: write
@@ -29,9 +30,6 @@ jobs:
         id: release
         with:
           release-type: node
-
-      - run: 'echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc'
-        if: ${{ steps.release.outputs.release_created }}
 
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
