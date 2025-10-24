@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 import { http } from "msw";
 import { setupServer } from "msw/node";
-import { pino } from "pino";
+import pino from "pino";
 import { expect } from "vitest";
 import ddStream from "../index.js";
 
