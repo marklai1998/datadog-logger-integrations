@@ -1,5 +1,28 @@
 # Changelog
 
+## [1.6.0](https://github.com/marklai1998/datadog-logger-integrations/compare/v1.5.2...v1.6.0) (2025-10-24)
+
+
+### Features
+
+* **bunyan:** bunyan support ([cc1368e](https://github.com/marklai1998/datadog-logger-integrations/commit/cc1368ef5a91e1ffb199a53d0a485d9521e76699))
+* **consola:** consola support ([7ee4d77](https://github.com/marklai1998/datadog-logger-integrations/commit/7ee4d772e9971b5de208334546b65312ca7df4be))
+* **electronLog:** electron log support ([e198afd](https://github.com/marklai1998/datadog-logger-integrations/commit/e198afd7c10c578d9d24522d64c8c9e7067f2bb8))
+* export winston transport ([a805669](https://github.com/marklai1998/datadog-logger-integrations/commit/a805669f3d45c08c9be9fa8b7ab7d56f49ed0ed1))
+* init project ([9226f2a](https://github.com/marklai1998/datadog-logger-integrations/commit/9226f2ad1ad2813d6f1351bb401463d072a1a31e))
+* remove split2 deps ([376aa3f](https://github.com/marklai1998/datadog-logger-integrations/commit/376aa3fd82e7adb230b981ae66a8fd05310990a2))
+* winston support ([eb21044](https://github.com/marklai1998/datadog-logger-integrations/commit/eb21044ac871e2c47cb1ada4f7226e7ed9503cfd))
+
+
+### Bug Fixes
+
+* allow use stream directly ([01ed18b](https://github.com/marklai1998/datadog-logger-integrations/commit/01ed18b0c45714b94c4ec2b2be06a3e88eff4dbd))
+* **deps:** update all dependencies ([#17](https://github.com/marklai1998/datadog-logger-integrations/issues/17)) ([a9bae4f](https://github.com/marklai1998/datadog-logger-integrations/commit/a9bae4f0a19727263d645482d24b1c065f915ae5))
+* include named export ([5039638](https://github.com/marklai1998/datadog-logger-integrations/commit/50396382175e24202f45c54a094bcd65d899bee6))
+* log timestamp ([f55ec50](https://github.com/marklai1998/datadog-logger-integrations/commit/f55ec5099e58e70801ca8aee356163f1306f67f4))
+* make cosola as optional deps ([dcdcc54](https://github.com/marklai1998/datadog-logger-integrations/commit/dcdcc54b4aadf540e7b44bb840e35ad3e66c9ea1))
+* **pino:** named export ([c23673a](https://github.com/marklai1998/datadog-logger-integrations/commit/c23673a5fb73c6b7125c399ac2206eb0ace54835))
+
 ## [1.5.2](https://github.com/marklai1998/datadog-logger-integrations/compare/v1.5.1...v1.5.2) (2025-10-24)
 
 
