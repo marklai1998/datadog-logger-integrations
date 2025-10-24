@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.2](https://github.com/marklai1998/datadog-logger-integrations/compare/v1.5.1...v1.5.2) (2025-10-24)
+
+
+### Bug Fixes
+
+* **deps:** update all dependencies ([#17](https://github.com/marklai1998/datadog-logger-integrations/issues/17)) ([a9bae4f](https://github.com/marklai1998/datadog-logger-integrations/commit/a9bae4f0a19727263d645482d24b1c065f915ae5))
+
 ## [1.5.1](https://github.com/marklai1998/datadog-logger-integrations/compare/v1.5.0...v1.5.1) (2025-05-26)
 
 
