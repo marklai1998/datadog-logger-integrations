@@ -115,23 +115,23 @@
   },
   "homepage": "https://github.com/marklai1998/datadog-logger-integrations#readme",
   "devDependencies": {
-    "@biomejs/biome": "2.3.2",
+    "@biomejs/biome": "2.3.8",
     "@commitlint/cli": "20.1.0",
     "@commitlint/config-conventional": "20.0.0",
     "@faker-js/faker": "10.1.0",
     "@types/bunyan": "^1.8.11",
-    "@types/node": "24.9.2",
+    "@types/node": "24.10.1",
     "@types/supertest": "6.0.3",
-    "@vitest/coverage-v8": "4.0.6",
-    "lefthook": "2.0.2",
+    "@vitest/coverage-v8": "4.0.14",
+    "lefthook": "2.0.4",
     "msw": "^2.8.4",
-    "rollup": "4.52.5",
-    "rollup-plugin-dts": "6.2.3",
+    "rollup": "4.53.3",
+    "rollup-plugin-dts": "6.3.0",
     "rollup-plugin-esbuild": "6.2.1",
-    "rollup-plugin-node-externals": "8.1.1",
+    "rollup-plugin-node-externals": "8.1.2",
     "rollup-plugin-peer-deps-external": "2.2.4",
     "typescript": "5.9.3",
-    "vitest": "4.0.6"
+    "vitest": "4.0.14"
   },
   "peerDependencies": {
     "bunyan": "^1.0.0",
@@ -157,7 +157,7 @@
       "optional": true
     }
   },
-  "packageManager": "pnpm@10.20.0",
+  "packageManager": "pnpm@10.24.0",
   "engines": {
     "node": ">=18"
   },
