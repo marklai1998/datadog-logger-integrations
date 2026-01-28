@@ -122,7 +122,7 @@
     "@types/bunyan": "1.8.11",
     "@types/node": "24.10.9",
     "@types/supertest": "6.0.3",
-    "@vitest/coverage-v8": "4.0.14",
+    "@vitest/coverage-v8": "4.0.18",
     "lefthook": "2.0.16",
     "msw": "2.8.4",
     "rollup": "4.53.3",
@@ -131,7 +131,7 @@
     "rollup-plugin-node-externals": "8.1.2",
     "rollup-plugin-peer-deps-external": "2.2.4",
     "typescript": "5.9.3",
-    "vitest": "4.0.14"
+    "vitest": "4.0.18"
   },
   "peerDependencies": {
     "bunyan": "^1.0.0",
