@@ -124,7 +124,7 @@
     "@types/supertest": "6.0.3",
     "@vitest/coverage-v8": "4.0.18",
     "lefthook": "2.0.16",
-    "msw": "2.8.4",
+    "msw": "2.12.7",
     "rollup": "4.53.3",
     "rollup-plugin-dts": "6.3.0",
     "rollup-plugin-esbuild": "6.2.1",
