@@ -1,9 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:best-practices",
-    "config:js-lib",
-    "config:semverAllMonthly",
-    ":automergeMinor"
+    "github>marklai1998/shared-config-renovate//presets/lib.json",
+    "github>marklai1998/shared-config-renovate//presets/autoMerge.json"
   ]
 }
