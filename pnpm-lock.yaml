@@ -40,7 +40,7 @@ importers:
         specifier: 10.1.0
         version: 10.1.0
       '@types/bunyan':
-        specifier: ^1.8.11
+        specifier: 1.8.11
         version: 1.8.11
       '@types/node':
         specifier: 24.10.1
@@ -55,7 +55,7 @@ importers:
         specifier: 2.0.4
         version: 2.0.4
       msw:
-        specifier: ^2.8.4
+        specifier: 2.8.4
         version: 2.8.4(@types/node@24.10.1)(typescript@5.9.3)
       rollup:
         specifier: 4.53.3
