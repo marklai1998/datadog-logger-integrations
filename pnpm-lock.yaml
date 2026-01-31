@@ -33,12 +33,12 @@ importers:
       '@commitlint/cli':
         specifier: 20.3.1
         version: 20.3.1(@types/node@24.10.9)(typescript@5.9.3)
-      '@commitlint/config-conventional':
-        specifier: 20.3.1
-        version: 20.3.1
       '@faker-js/faker':
         specifier: 10.2.0
         version: 10.2.0
+      '@marklai/shared-config-commitlint':
+        specifier: ^1.0.0
+        version: 1.0.0(@commitlint/cli@20.3.1(@types/node@24.10.9)(typescript@5.9.3))
       '@types/bunyan':
         specifier: 1.8.11
         version: 1.8.11
@@ -447,6 +447,12 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
+
+  '@marklai/shared-config-commitlint@1.0.0':
+    resolution: {integrity: sha512-z9c8iFPafWLVu2ezkWw7AhwOPu2rU8lFsDMlnGIn7M/TcvTx42gBofmm8CQmSxGSepRKWgLXg9/2F//oeCNhrg==}
+    engines: {node: '>=20'}
+    peerDependencies:
+      '@commitlint/cli': ^20.0.0
 
   '@mswjs/interceptors@0.40.0':
     resolution: {integrity: sha512-EFd6cVbHsgLa6wa4RljGj6Wk75qoHxUSyc5asLyyPSyuhIcdS2Q3Phw6ImS1q+CkALthJRShiYfKANcQMuMqsQ==}
@@ -1985,6 +1991,11 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
+
+  '@marklai/shared-config-commitlint@1.0.0(@commitlint/cli@20.3.1(@types/node@24.10.9)(typescript@5.9.3))':
+    dependencies:
+      '@commitlint/cli': 20.3.1(@types/node@24.10.9)(typescript@5.9.3)
+      '@commitlint/config-conventional': 20.3.1
 
   '@mswjs/interceptors@0.40.0':
     dependencies:
