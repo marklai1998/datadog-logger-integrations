@@ -115,7 +115,7 @@
   },
   "homepage": "https://github.com/marklai1998/datadog-logger-integrations#readme",
   "devDependencies": {
-    "@biomejs/biome": "2.3.13",
+    "@biomejs/biome": "2.3.14",
     "@commitlint/cli": "20.4.0",
     "@faker-js/faker": "10.2.0",
     "@marklai/shared-config-commitlint": "1.0.0",
