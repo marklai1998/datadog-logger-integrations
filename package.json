@@ -123,7 +123,7 @@
     "@types/node": "24.10.11",
     "@types/supertest": "6.0.3",
     "@vitest/coverage-v8": "4.0.18",
-    "lefthook": "2.0.16",
+    "lefthook": "2.1.0",
     "msw": "2.12.8",
     "rollup": "4.57.1",
     "rollup-plugin-dts": "6.3.0",
