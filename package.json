@@ -120,7 +120,7 @@
     "@faker-js/faker": "10.2.0",
     "@marklai/shared-config-commitlint": "1.0.0",
     "@types/bunyan": "1.8.11",
-    "@types/node": "24.10.11",
+    "@types/node": "24.10.12",
     "@types/supertest": "6.0.3",
     "@vitest/coverage-v8": "4.0.18",
     "lefthook": "2.1.0",
