@@ -1,6 +1,6 @@
-import { DataDogWritableStream } from "../DataDogWritableStream.js";
-import type { LogStreamConfig } from "../types";
-import { convertLevel } from "../utils/index.js";
+import { DataDogWritableStream } from '../DataDogWritableStream.js';
+import type { LogStreamConfig } from '../types';
+import { convertLevel } from '../utils/index.js';
 
 export type LogType = {
   level: number;

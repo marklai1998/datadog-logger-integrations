@@ -36,6 +36,9 @@ importers:
       '@faker-js/faker':
         specifier: 10.3.0
         version: 10.3.0
+      '@marklai/shared-config-biome':
+        specifier: ^1.0.0
+        version: 1.0.0(@biomejs/biome@2.4.4)
       '@marklai/shared-config-commitlint':
         specifier: 1.0.0
         version: 1.0.0(@commitlint/cli@20.4.2(@types/node@24.10.13)(typescript@5.9.3))
@@ -447,6 +450,12 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
+
+  '@marklai/shared-config-biome@1.0.0':
+    resolution: {integrity: sha512-LOUwfnXGSB9Kuh5bAZNCUgUrtvaOxjBPEuD6hdGoMjLcrOikrLJW8COVVko3GaomRWivM4BlaLlYcyRI5eK0EA==}
+    engines: {node: '>=20'}
+    peerDependencies:
+      '@biomejs/biome': ^2.0.0
 
   '@marklai/shared-config-commitlint@1.0.0':
     resolution: {integrity: sha512-z9c8iFPafWLVu2ezkWw7AhwOPu2rU8lFsDMlnGIn7M/TcvTx42gBofmm8CQmSxGSepRKWgLXg9/2F//oeCNhrg==}
@@ -1935,6 +1944,10 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
+
+  '@marklai/shared-config-biome@1.0.0(@biomejs/biome@2.4.4)':
+    dependencies:
+      '@biomejs/biome': 2.4.4
 
   '@marklai/shared-config-commitlint@1.0.0(@commitlint/cli@20.4.2(@types/node@24.10.13)(typescript@5.9.3))':
     dependencies:

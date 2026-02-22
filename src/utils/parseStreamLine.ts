@@ -1,5 +1,5 @@
 const safeParseJson = (input: string | object) => {
-  if (typeof input === "object") {
+  if (typeof input === 'object') {
     return input;
   }
 
@@ -13,7 +13,7 @@ const safeParseJson = (input: string | object) => {
 export const parseStreamLine = <T = Record<string, unknown>>(
   input: string | string[] | object,
 ): T[] => {
-  if (typeof input === "object" && !Array.isArray(input)) {
+  if (typeof input === 'object' && !Array.isArray(input)) {
     return [input as T];
   }
 
