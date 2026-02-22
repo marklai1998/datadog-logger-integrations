@@ -37,13 +37,13 @@ importers:
         specifier: 10.3.0
         version: 10.3.0
       '@marklai/shared-config-biome':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0(@biomejs/biome@2.4.4)
       '@marklai/shared-config-commitlint':
         specifier: 1.0.0
         version: 1.0.0(@commitlint/cli@20.4.2(@types/node@24.10.13)(typescript@5.9.3))
       '@marklai/shared-config-typescript':
-        specifier: ^1.1.0
+        specifier: 1.1.0
         version: 1.1.0(typescript@5.9.3)
       '@types/bunyan':
         specifier: 1.8.11
