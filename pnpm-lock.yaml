@@ -42,6 +42,9 @@ importers:
       '@marklai/shared-config-commitlint':
         specifier: 1.0.0
         version: 1.0.0(@commitlint/cli@20.4.2(@types/node@24.10.13)(typescript@5.9.3))
+      '@marklai/shared-config-typescript':
+        specifier: ^1.1.0
+        version: 1.1.0(typescript@5.9.3)
       '@types/bunyan':
         specifier: 1.8.11
         version: 1.8.11
@@ -462,6 +465,12 @@ packages:
     engines: {node: '>=20'}
     peerDependencies:
       '@commitlint/cli': ^20.0.0
+
+  '@marklai/shared-config-typescript@1.1.0':
+    resolution: {integrity: sha512-YikYyh8vYpZ4ZEzOZ1+OPyaD0OYxc8JBqt/KXrA4cW9YMTTr8j2RNrGteHyxZBjnCMWRkEpAmvmfjmGPXkodQg==}
+    engines: {node: '>=20'}
+    peerDependencies:
+      typescript: ^5.0.0
 
   '@mswjs/interceptors@0.41.3':
     resolution: {integrity: sha512-cXu86tF4VQVfwz8W1SPbhoRyHJkti6mjH/XJIxp40jhO4j2k1m4KYrEykxqWPkFF3vrK4rgQppBh//AwyGSXPA==}
@@ -1953,6 +1962,10 @@ snapshots:
     dependencies:
       '@commitlint/cli': 20.4.2(@types/node@24.10.13)(typescript@5.9.3)
       '@commitlint/config-conventional': 20.3.1
+
+  '@marklai/shared-config-typescript@1.1.0(typescript@5.9.3)':
+    dependencies:
+      typescript: 5.9.3
 
   '@mswjs/interceptors@0.41.3':
     dependencies:

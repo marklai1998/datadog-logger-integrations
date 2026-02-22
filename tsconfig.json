@@ -1,28 +1,7 @@
 {
+  "extends": "@marklai/shared-config-typescript",
   "compilerOptions": {
-    "types": ["vitest/globals", "node"],
-
-    "target": "ESNext",
-    "lib": ["ESNext"],
-    "module": "NodeNext",
-    "moduleResolution": "nodenext",
-
-    "allowJs": false,
-    "skipLibCheck": true,
-    "esModuleInterop": false,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-
-    "strict": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
-    "noImplicitOverride": true,
-    "noImplicitReturns": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "types": ["vitest/globals", "node"]
   },
   "include": ["src"]
 }
