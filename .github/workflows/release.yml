@@ -33,7 +33,6 @@ jobs:
 
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
-        if: ${{ steps.release.outputs.release_created }}
 
       - run: pnpm build
         if: ${{ steps.release.outputs.release_created }}
