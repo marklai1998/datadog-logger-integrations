@@ -117,7 +117,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.4.10",
     "@commitlint/cli": "20.5.0",
-    "@faker-js/faker": "10.3.0",
+    "@faker-js/faker": "10.4.0",
     "@marklai/shared-config-biome": "1.0.0",
     "@marklai/shared-config-commitlint": "1.0.0",
     "@marklai/shared-config-typescript": "1.1.0",
