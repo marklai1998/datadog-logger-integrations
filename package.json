@@ -127,7 +127,7 @@
     "@vitest/coverage-v8": "4.1.2",
     "lefthook": "2.1.4",
     "msw": "2.12.14",
-    "rollup": "4.60.0",
+    "rollup": "4.60.1",
     "rollup-plugin-dts": "6.4.1",
     "rollup-plugin-esbuild": "6.2.1",
     "rollup-plugin-node-externals": "8.1.2",
