@@ -1,7 +1,7 @@
-onlyBuiltDependencies:
-  - '@biomejs/biome'
-  - dtrace-provider
-  - esbuild
-  - lefthook
-  - msw
 sideEffectsCache: false
+allowBuilds:
+  '@biomejs/biome': true
+  dtrace-provider: true
+  esbuild: true
+  lefthook: true
+  msw: true
