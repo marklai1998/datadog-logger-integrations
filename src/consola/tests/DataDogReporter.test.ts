@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { createConsola } from 'consola';
+import { createConsola } from 'consola/core';
 import { http } from 'msw';
 import { setupServer } from 'msw/node';
 import { DataDogReporter } from '../index.js';
