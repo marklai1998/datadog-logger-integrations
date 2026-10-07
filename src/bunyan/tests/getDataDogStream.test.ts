@@ -8,7 +8,7 @@ import { getDataDogStream } from '../index.js';
 const server = setupServer();
 
 describe('getDataDogStream', () => {
-  beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
+  beforeAll(() => server.listen({ onUnhandledFrame: 'error' }));
 
   afterAll(() => server.close());
 

@@ -8,7 +8,7 @@ import { dataDogTransport } from '../index.js';
 const server = setupServer();
 
 describe('dataDogTransport', () => {
-  beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
+  beforeAll(() => server.listen({ onUnhandledFrame: 'error' }));
 
   afterAll(() => server.close());
 

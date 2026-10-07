@@ -8,7 +8,7 @@ const server = setupServer();
 
 describe('getDataDogStream', () => {
   beforeAll(() => {
-    server.listen({ onUnhandledRequest: 'error' });
+    server.listen({ onUnhandledFrame: 'error' });
   });
 
   afterAll(() => server.close());
