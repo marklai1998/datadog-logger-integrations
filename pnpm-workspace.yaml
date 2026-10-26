@@ -1,6 +1,6 @@
 sideEffectsCache: false
 allowBuilds:
-  '@biomejs/biome': true
+  "@biomejs/biome": true
   dtrace-provider: true
   esbuild: true
   lefthook: true
