@@ -64,19 +64,19 @@ pnpm i datadog-logger-integrations
 #### [Bunyan](https://github.com/trentm/node-bunyan)
 
 ```ts
-import { LogStreamConfig } from 'datadog-logger-integrations'
-import { getDataDogStream } from 'datadog-logger-integrations/bunyan'
+import { LogStreamConfig } from 'datadog-logger-integrations';
+import { getDataDogStream } from 'datadog-logger-integrations/bunyan';
 
 const opts: LogStreamConfig = {
-    ddClientConfig: {
-        authMethods: {
-            apiKeyAuth: apiKey,
-        },
+  ddClientConfig: {
+    authMethods: {
+      apiKeyAuth: apiKey,
     },
-    ddTags: 'env:test',
-    ddSource: "my source",
-    service: "my service",
-}
+  },
+  ddTags: 'env:test',
+  ddSource: 'my source',
+  service: 'my service',
+};
 
 const stream = getDataDogStream(opts);
 
@@ -95,24 +95,22 @@ logger.info('test');
 > If you are using it [with lambda](#usage-with-lambda), you must use the Stream API
 
 ```ts
-import { LogStreamConfig } from 'datadog-logger-integrations'
-import { getDataDogStream } from 'datadog-logger-integrations/consola'
+import { LogStreamConfig } from 'datadog-logger-integrations';
+import { getDataDogStream } from 'datadog-logger-integrations/consola';
 
 const opts: LogStreamConfig = {
-    ddClientConfig: {
-        authMethods: {
-            apiKeyAuth: apiKey,
-        },
+  ddClientConfig: {
+    authMethods: {
+      apiKeyAuth: apiKey,
     },
-    ddTags: 'env:test',
-    ddSource: "my source",
-    service: "my service",
-}
+  },
+  ddTags: 'env:test',
+  ddSource: 'my source',
+  service: 'my service',
+};
 
 const logger = createConsola({
-  reporters: [
-    new DataDogReporter(opts),
-  ],
+  reporters: [new DataDogReporter(opts)],
 });
 
 logger.info('test');
@@ -121,19 +119,19 @@ logger.info('test');
 ##### Stream API
 
 ```ts
-import { LogStreamConfig } from 'datadog-logger-integrations'
-import { getDataDogStream } from 'datadog-logger-integrations/consola'
+import { LogStreamConfig } from 'datadog-logger-integrations';
+import { getDataDogStream } from 'datadog-logger-integrations/consola';
 
 const opts: LogStreamConfig = {
-    ddClientConfig: {
-        authMethods: {
-            apiKeyAuth: apiKey,
-        },
+  ddClientConfig: {
+    authMethods: {
+      apiKeyAuth: apiKey,
     },
-    ddTags: 'env:test',
-    ddSource: "my source",
-    service: "my service",
-}
+  },
+  ddTags: 'env:test',
+  ddSource: 'my source',
+  service: 'my service',
+};
 
 const stream = getDataDogStream(opts);
 
@@ -141,8 +139,7 @@ const logger = createConsola({
   reporters: [
     {
       log: (logObj) => {
-        if (!stream.writableEnded)
-          stream.write(logObj);
+        if (!stream.writableEnded) stream.write(logObj);
       },
     },
   ],
@@ -157,33 +154,8 @@ logger.info('test');
 > If you want to wait for logs to flush before process close, you must use the Stream API
 
 ```ts
-import { LogStreamConfig } from 'datadog-logger-integrations'
-import { dataDogTransport } from 'datadog-logger-integrations/electronLog'
-
-const opts: LogStreamConfig = {
-    ddClientConfig: {
-        authMethods: {
-            apiKeyAuth: apiKey,
-        },
-    },
-    ddTags: 'env:test',
-    ddSource: "my source",
-    service: "my service",
-}
-
-logger.transports.datadog = dataDogTransport(
-  { level: 'debug' }, 
-  opts,
-);
-
-logger.info('test');
-```
-
-##### Stream API
-
-```ts
-import { LogStreamConfig } from 'datadog-logger-integrations'
-import { getDataDogStream } from 'datadog-logger-integrations/electronLog'
+import { LogStreamConfig } from 'datadog-logger-integrations';
+import { dataDogTransport } from 'datadog-logger-integrations/electronLog';
 
 const opts: LogStreamConfig = {
   ddClientConfig: {
@@ -192,9 +164,31 @@ const opts: LogStreamConfig = {
     },
   },
   ddTags: 'env:test',
-  ddSource: "my source",
-  service: "my service",
-}
+  ddSource: 'my source',
+  service: 'my service',
+};
+
+logger.transports.datadog = dataDogTransport({ level: 'debug' }, opts);
+
+logger.info('test');
+```
+
+##### Stream API
+
+```ts
+import { LogStreamConfig } from 'datadog-logger-integrations';
+import { getDataDogStream } from 'datadog-logger-integrations/electronLog';
+
+const opts: LogStreamConfig = {
+  ddClientConfig: {
+    authMethods: {
+      apiKeyAuth: apiKey,
+    },
+  },
+  ddTags: 'env:test',
+  ddSource: 'my source',
+  service: 'my service',
+};
 
 const stream = getDataDogStream(opts);
 transport.level = 'debug' as const;
@@ -210,25 +204,25 @@ logger.info('test');
 > If you are using it [with lambda](#usage-with-lambda), you must use the Stream API
 
 ```ts
-import { LogStreamConfig } from 'datadog-logger-integrations'
+import { LogStreamConfig } from 'datadog-logger-integrations';
 
 const options: LogStreamConfig = {
-    ddClientConfig: {
-        authMethods: {
-            apiKeyAuth: apiKey,
-        },
+  ddClientConfig: {
+    authMethods: {
+      apiKeyAuth: apiKey,
     },
-    ddTags: 'env:test',
-    ddSource: "my source",
-    service: "my service",
-}
+  },
+  ddTags: 'env:test',
+  ddSource: 'my source',
+  service: 'my service',
+};
 
 const logger = pino(
-    {},
-    pino.transport({
-      target: 'datadog-logger-integrations/pino',
-      options
-    }),
+  {},
+  pino.transport({
+    target: 'datadog-logger-integrations/pino',
+    options,
+  }),
 );
 
 logger.info('test');
@@ -237,26 +231,23 @@ logger.info('test');
 ##### With [Stream API](https://getpino.io/#/docs/api?id=pinomultistreamstreamsarray-opts-gt-multistreamres)
 
 ```ts
-import { LogStreamConfig } from 'datadog-logger-integrations'
-import { getDataDogStream } from 'datadog-logger-integrations/pino'
+import { LogStreamConfig } from 'datadog-logger-integrations';
+import { getDataDogStream } from 'datadog-logger-integrations/pino';
 
 const opts: LogStreamConfig = {
-    ddClientConfig: {
-        authMethods: {
-            apiKeyAuth: apiKey,
-        },
+  ddClientConfig: {
+    authMethods: {
+      apiKeyAuth: apiKey,
     },
-    ddTags: 'env:test',
-    ddSource: "my source",
-    service: "my service",
-}
+  },
+  ddTags: 'env:test',
+  ddSource: 'my source',
+  service: 'my service',
+};
 
 const stream = getDataDogStream(opts);
 
-const logger = pino(
-    {},
-    pino.multistream([stream]),
-);
+const logger = pino({}, pino.multistream([stream]));
 
 logger.info('test');
 ```
@@ -267,24 +258,22 @@ logger.info('test');
 > If you are using it [with lambda](#usage-with-lambda), you must use the Stream directly
 
 ```ts
-import { LogStreamConfig } from 'datadog-logger-integrations'
-import { DataDogTransport } from 'datadog-logger-integrations/winston'
+import { LogStreamConfig } from 'datadog-logger-integrations';
+import { DataDogTransport } from 'datadog-logger-integrations/winston';
 
 const opts: LogStreamConfig = {
-    ddClientConfig: {
-        authMethods: {
-            apiKeyAuth: apiKey,
-        },
+  ddClientConfig: {
+    authMethods: {
+      apiKeyAuth: apiKey,
     },
-    ddTags: 'env:test',
-    ddSource: "my source",
-    service: "my service",
-}
+  },
+  ddTags: 'env:test',
+  ddSource: 'my source',
+  service: 'my service',
+};
 
 const logger = winston.createLogger({
-    transports: [
-        new DataDogTransport(opts),
-    ],
+  transports: [new DataDogTransport(opts)],
 });
 
 logger.info('test');
@@ -293,28 +282,28 @@ logger.info('test');
 ##### Stream API
 
 ```ts
-import { LogStreamConfig } from 'datadog-logger-integrations'
-import { getDataDogStream } from 'datadog-logger-integrations/winston'
+import { LogStreamConfig } from 'datadog-logger-integrations';
+import { getDataDogStream } from 'datadog-logger-integrations/winston';
 
 const opts: LogStreamConfig = {
-    ddClientConfig: {
-        authMethods: {
-            apiKeyAuth: apiKey,
-        },
+  ddClientConfig: {
+    authMethods: {
+      apiKeyAuth: apiKey,
     },
-    ddTags: 'env:test',
-    ddSource: "my source",
-    service: "my service",
-}
+  },
+  ddTags: 'env:test',
+  ddSource: 'my source',
+  service: 'my service',
+};
 
 const stream = getDataDogStream(opts);
 
 const logger = winston.createLogger({
-    transports: [
-        new winston.transports.Stream({
-            stream,
-        }),
-    ],
+  transports: [
+    new winston.transports.Stream({
+      stream,
+    }),
+  ],
 });
 
 logger.info('test');
@@ -326,24 +315,25 @@ logger.info('test');
 
 ```ts
 export type LogStreamConfig = {
-    ddClientConfig?: Record<string, any>; // @datadog/datadog-api-client createConfiguration option
-    ddServerConfig?: {  // @datadog/datadog-api-client setServerVariables option
-        site?: string;
-        subdomain?: string;
-        protocol?: string;
-    };
-    ddSource?: string;
-    ddTags?: string;
-    service?: string;
-    
-    sendIntervalMs?: number;
-    batchSize?: number;
-    
-    logMessageBuilder?: (
-        log: Record<string, unknown>,
-    ) => v2.LogsApiSubmitLogRequest['body'][number];
+  ddClientConfig?: Record<string, any>; // @datadog/datadog-api-client createConfiguration option
+  ddServerConfig?: {
+    // @datadog/datadog-api-client setServerVariables option
+    site?: string;
+    subdomain?: string;
+    protocol?: string;
+  };
+  ddSource?: string;
+  ddTags?: string;
+  service?: string;
 
-    debug?: boolean;
+  sendIntervalMs?: number;
+  batchSize?: number;
+
+  logMessageBuilder?: (
+    log: Record<string, unknown>,
+  ) => v2.LogsApiSubmitLogRequest['body'][number];
+
+  debug?: boolean;
 };
 ```
 
@@ -354,7 +344,10 @@ You could integrate to any logger that support writable stream by using the stre
 But please consider contribute to this repo, so everyone can use it!
 
 ```ts
-import { DataDogWritableStream, LogStreamConfig } from 'datadog-logger-integrations'
+import {
+  DataDogWritableStream,
+  LogStreamConfig,
+} from 'datadog-logger-integrations';
 
 const opts: LogStreamConfig = {
   ddClientConfig: {
@@ -362,24 +355,24 @@ const opts: LogStreamConfig = {
       apiKeyAuth: apiKey,
     },
   },
-}
+};
 
 const logger = fancyLogger({
   stream: new DataDogWritableStream({
     ...opts,
     // You must provide your own builder function that takes the logger input and convert to DataDog format
-    logMessageBuilder: (({ hostname, ...parsedItem }) => ({
-      ddsource: "some source",
-      ddtags: "tags",
-      service: "unknown service",
+    logMessageBuilder: ({ hostname, ...parsedItem }) => ({
+      ddsource: 'some source',
+      ddtags: 'tags',
+      service: 'unknown service',
       message: JSON.stringify({
         date: new Date().toISOString(),
         ...parsedItem,
       }),
       hostname,
-    }))
-  })
-})
+    }),
+  }),
+});
 ```
 
 ### Usage with Lambda
@@ -392,51 +385,46 @@ These examples are with pino, but other integrations work the same way
 #### Example with [Explicit Resource Management](https://github.com/tc39/proposal-explicit-resource-management), require [Node 20.4.0+](https://nodejs.org/en/blog/release/v20.4.0)
 
 ```ts
-import { getDataDogStream } from 'datadog-logger-integrations/pino'
+import { getDataDogStream } from 'datadog-logger-integrations/pino';
 
 const getLogger = () => {
-    const stream = getDataDogStream(opts);
+  const stream = getDataDogStream(opts);
 
-    const instance = pino(
-        {},
-        pino.multistream([stream]),
-    );
-    
-    return {
-      instance,
-      [Symbol.asyncDispose]: async () => {
-        // Wait for the stream to fully drain
-        await new Promise<void>((resolve) => {
-          stream.on('close', () => {
-            resolve();
-          });
+  const instance = pino({}, pino.multistream([stream]));
 
-          stream.end();
+  return {
+    instance,
+    [Symbol.asyncDispose]: async () => {
+      // Wait for the stream to fully drain
+      await new Promise<void>((resolve) => {
+        stream.on('close', () => {
+          resolve();
         });
-      }
-    }
-}
+
+        stream.end();
+      });
+    },
+  };
+};
 
 export const handler = async () => {
   await using logger = getLogger();
 
-  logger.instance.info("Hello")
-  
+  logger.instance.info('Hello');
+
   return {};
 };
 ```
 
 #### Example for Node < Node 20.4.0
+
 ```ts
-import { getDataDogStream } from 'datadog-logger-integrations/pino'
+import { getDataDogStream } from 'datadog-logger-integrations/pino';
 
 export const handler = async () => {
   const stream = getDataDogStream(opts);
 
-  const logger = pino(
-    {},
-    pino.multistream([stream]),
-  );
+  const logger = pino({}, pino.multistream([stream]));
 
   logger.info('test');
 
@@ -448,10 +436,9 @@ export const handler = async () => {
 
     stream.end();
   });
-  
+
   return {};
 };
-
 ```
 
 ## 🤝 Contributing
