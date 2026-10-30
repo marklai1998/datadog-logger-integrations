@@ -3,5 +3,13 @@
   "extends": ["@marklai/shared-config-biome"],
   "files": {
     "includes": ["**", "!CHANGELOG.md"]
-  }
+  },
+  "overrides": [
+    {
+      "includes": ["pnpm-lock.yaml"],
+      "formatter": {
+        "enabled": false
+      }
+    }
+  ]
 }
