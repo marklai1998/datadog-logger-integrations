@@ -1,25 +1,30 @@
 import { Writable } from 'node:stream';
-import { client, v2 } from '@datadog/datadog-api-client';
-import type { LogMessageBuilder } from './types/index.js';
+import { promisify } from 'node:util';
+import { deflate } from 'node:zlib';
+import type {
+  DataDogClientConfig,
+  DataDogServerConfig,
+  HTTPLogItem,
+  LogMessageBuilder,
+} from './types/index.js';
 import { parseStreamLine } from './utils/parseStreamLine';
+
+const deflateAsync = promisify(deflate);
 
 export class DataDogWritableStream<
   T = Record<string, unknown>,
 > extends Writable {
-  apiInstance: v2.LogsApi;
-  batch: v2.HTTPLogItem[] = [];
+  batch: HTTPLogItem[] = [];
   timer?: NodeJS.Timeout;
+  readonly endpoint: string;
+  readonly apiKey?: string;
 
   flushJob?: Promise<void>;
 
   constructor(
     private readonly config: {
-      ddClientConfig?: Parameters<typeof client.createConfiguration>[0];
-      ddServerConfig?: {
-        site?: string;
-        subdomain?: string;
-        protocol?: string;
-      };
+      ddClientConfig?: DataDogClientConfig;
+      ddServerConfig?: DataDogServerConfig;
       sendIntervalMs?: number;
       batchSize?: number;
       debug?: boolean;
@@ -28,12 +33,13 @@ export class DataDogWritableStream<
   ) {
     super({ objectMode: true });
 
-    const clientConfig = client.createConfiguration(this.config.ddClientConfig);
-    if (config.ddServerConfig) {
-      clientConfig.setServerVariables(config.ddServerConfig);
-    }
+    this.apiKey =
+      config.ddClientConfig?.authMethods?.apiKeyAuth ?? process.env.DD_API_KEY;
 
-    this.apiInstance = new v2.LogsApi(clientConfig);
+    const site =
+      config.ddServerConfig?.site ?? process.env.DD_SITE ?? 'datadoghq.com';
+    const subdomain = config.ddServerConfig?.subdomain ?? 'http-intake.logs';
+    this.endpoint = `https://${subdomain}.${site}/api/v2/logs`;
 
     this.timer =
       this.config.sendIntervalMs !== 0
@@ -102,7 +108,7 @@ export class DataDogWritableStream<
     }
   }
 
-  async flush(batch: v2.HTTPLogItem[]) {
+  async flush(batch: HTTPLogItem[]) {
     if (this.config.debug) {
       console.log(`[DataDogWritableStream] Flush: ${JSON.stringify(batch)}`);
     }
@@ -110,16 +116,34 @@ export class DataDogWritableStream<
     if (batch.length === 0) return;
 
     try {
-      const params: v2.LogsApiSubmitLogRequest = {
-        body: batch,
-        contentEncoding: 'deflate',
-      };
+      const body = JSON.stringify(batch);
       if (this.config.debug) {
-        console.log(
-          `[DataDogWritableStream] Outgoing param: ${JSON.stringify(params)}`,
+        console.log(`[DataDogWritableStream] Outgoing body: ${body}`);
+      }
+
+      if (!this.apiKey) {
+        throw new Error(
+          'Missing Datadog API key: set ddClientConfig.authMethods.apiKeyAuth or DD_API_KEY',
         );
       }
-      await this.apiInstance.submitLog(params);
+
+      const res = await fetch(this.endpoint, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'Content-Encoding': 'deflate',
+          'DD-API-KEY': this.apiKey,
+        },
+        body: await deflateAsync(body),
+      });
+
+      if (!res.ok) {
+        const text = await res.text().catch(() => '');
+        throw new Error(
+          `Datadog log intake responded ${res.status} ${res.statusText}: ${text}`,
+        );
+      }
       if (this.config.debug) {
         console.log('[DataDogWritableStream] Log sent');
       }

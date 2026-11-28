@@ -315,12 +315,14 @@ logger.info('test');
 
 ```ts
 export type LogStreamConfig = {
-  ddClientConfig?: Record<string, any>; // @datadog/datadog-api-client createConfiguration option
+  ddClientConfig?: {
+    authMethods?: {
+      apiKeyAuth?: string; // falls back to the DD_API_KEY env var
+    };
+  };
   ddServerConfig?: {
-    // @datadog/datadog-api-client setServerVariables option
-    site?: string;
-    subdomain?: string;
-    protocol?: string;
+    site?: string; // e.g. datadoghq.eu; falls back to DD_SITE, then datadoghq.com
+    subdomain?: string; // defaults to http-intake.logs
   };
   ddSource?: string;
   ddTags?: string;
@@ -329,9 +331,14 @@ export type LogStreamConfig = {
   sendIntervalMs?: number;
   batchSize?: number;
 
-  logMessageBuilder?: (
-    log: Record<string, unknown>,
-  ) => v2.LogsApiSubmitLogRequest['body'][number];
+  logMessageBuilder?: (log: Record<string, unknown>) => {
+    message: string;
+    ddsource?: string;
+    ddtags?: string;
+    hostname?: string;
+    service?: string;
+    [key: string]: unknown;
+  };
 
   debug?: boolean;
 };
